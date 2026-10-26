@@ -6,6 +6,10 @@ Resilience Planning for Pinaypreneurs**, Kabankalan City, Negros Occidental, Phi
 
 **Open the Dojo:** https://akiramurata-juntendo-code.github.io/wise-ai-dojo/
 
+<img src="qr/WISE_AI_Dojo_QR.png" alt="QR code for the WISE AI Dojo" width="180">
+
+Printable A4 QR poster: [qr/WISE_AI_Dojo_QR_poster_A4.pdf](qr/WISE_AI_Dojo_QR_poster_A4.pdf)
+
 ## What is inside
 
 | Tab | What it does |
@@ -30,6 +34,7 @@ Resilience Planning for Pinaypreneurs**, Kabankalan City, Negros Occidental, Phi
 index.html     the whole Dojo (one page, no build step)
 video/         lecture videos, Lead your day Parts 1–5 (MP4, 720p) and poster images
 handouts/      slide PDFs and cover images
+qr/            QR code and printable A4 poster
 og.jpg         preview image for links shared on Facebook and Messenger
 .nojekyll      tells GitHub Pages to serve the files as they are
 ```
