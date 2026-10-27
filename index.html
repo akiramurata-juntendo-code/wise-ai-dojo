@@ -943,7 +943,7 @@ const EXAMPLE={biz:"food",product:"kakanin and sari-sari goods",phone:"gcash",gm
 
 
 // ---- optional sharing: open a pre-filled Google Form (nothing is sent by this page) ----
-const DOJO_FORM={base:"https://docs.google.com/forms/d/e/1FAIpQLSfCBoyrg6YNZ5dEjXXwn41PKWl-Z1u-aFPtLPIZR1rQcpkqLw/viewform",entries:{quiz:"entry.1564037940",skills:"entry.1318866594",clockA:"entry.372520481",clockB:"entry.499590018",helpers:"entry.710181774",handoff:"entry.2067712682",threeRs:"entry.859043103",will:"entry.1937081924"}};
+const DOJO_FORM={base:"https://docs.google.com/forms/d/e/1FAIpQLSfCBoyrg6YNZ5dEjXXwn41PKWl-Z1u-aFPtLPIZR1rQcpkqLw/viewform",entries:{quiz:"entry.1564037940",skills:"entry.1318866594",clockA:"entry.372520481",clockB:"entry.499590018",helpers:"entry.710181774",handoff:"entry.2067712682",threeRs:"entry.859043103",will:"entry.1937081924",sellChoices:"entry.1001126758",sellText:"entry.1465337346"}};
 function dojoPayload(){
   const st=store.get()||{}, a=st.answers, out={};
   if(a&&a.biz){const {s:sc,belt}=score(a);
