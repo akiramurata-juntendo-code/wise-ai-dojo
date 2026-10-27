@@ -659,7 +659,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
         <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes)</td><td>B1, B2</td></tr>
         <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link</td><td>K1</td></tr>
-        <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal)</td><td>S1</td></tr>
+        <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326</td><td>S1</td></tr>
         <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; my answers to the three questions</td><td>K2</td></tr>
       </tbody>
     </table></div>
@@ -1121,6 +1121,18 @@ const readyMsgs=`<div class="reflect" id="readymsgs"><h4>Ready messages: write t
     <div class="btnrow"><button type="button" class="copy" data-copy="cp-${k}">Copy English</button><button type="button" class="copy" data-copy="cp-${k}h">Copy Hiligaynon</button></div></div>`).join("")}
   <p class="tip"><b>Save them now</b><span>1. Facebook Page inbox: save them as saved replies. 2. Facebook: save them as draft posts. 3. Your phone's notes app, for when the data is slow. 4. Keep your customer list somewhere other than this phone, too.</span></p>
   <p class="tip tip-warn"><b>Fair prices in a calamity</b><span>Do not raise prices when people are in need. In an area under a state of calamity, the prices of basic necessities such as rice are automatically frozen for 60 days under the Price Act (RA 7581). Follow DTI advisories.</span><span class="hil">Indi pagtaasan ang presyo sa tion sang kalamidad.</span></p></div>`;
+// Scam check (Part 7): money safety for online sellers; reporting via CICC hotline 1326
+TP.SC="#role\nYou are a careful scam checker for a small online seller in the Philippines.\n#context\nI sell [product] in [place]. I got this message. I removed names, phone numbers and account numbers:\n___ (paste the message here)\n#task\n1. Is it likely a scam? Answer yes, maybe or no. 2. List the red flags you see. 3. Tell me what to do next, step by step.\n#style\nSimple English. Short.\n#rules\nNever ask me for my MPIN, OTP, password or account numbers. If you are not sure, tell me to check with GCash, Maya or my bank in their official app.";TP.SCh=hilTp(TP.SC);
+const SCAMS=[["\"Paid na po! Here is my GCash receipt (screenshot). Please ship now.\"", "Check first. A screenshot can be edited. Open <b>your own</b> GCash or Maya app and see the money in your transactions before you ship or hand over anything.", "Tan-awa anay sa imo kaugalingon nga app kon nagsulod gid ang kwarta."], ["\"Sorry, I sent ₱5,000 instead of ₱500. Please send back the ₱4,500.\"", "A common trick. Check your own balance: often no extra money came in, or it came from a stolen account. Never send money back because of a screenshot or a message. If extra money is really there, ask GCash or Maya through the Help Center in the app.", "Indi magpadala sang kwarta pabalik base lang sa screenshot."], ["\"GCash Support: your account will be locked. Send us the OTP we just sent you.\"", "Scam. GCash and Maya never ask for your MPIN or OTP. Never share them with anyone, and never type them into AI.", "Indi gid paghatag sang MPIN ukon OTP sa bisan sin-o."], ["\"Your parcel is on hold. Pay the ₱35 fee at this link.\"", "Very likely a scam. Do not tap links in surprise messages. Check with the courier in its official app or page.", "Indi pag-tap sang link sa wala ginapaabot nga mensahe."], ["\"Big order, 100 packs! Just pay the shipping first and I will pay you everything after.\"", "Scam pattern: they ask <b>you</b> to pay first. Real buyers pay you; you do not pay them to get an order.", "Ang matuod nga bumalakal amo ang nagabayad sa imo."], ["\"To receive my payment, scan this QR code and enter your MPIN.\"", "Scam. You never scan a QR code or enter your MPIN to <b>receive</b> money. Also check your own QR stand now and then: when you scan it, the name shown must be yours.", "Indi ka magbayad ukon mag-MPIN para makabaton sang kwarta."]];
+const scamCheck=`<div class="reflect" id="scamcheck"><h4>Scam check: keep your money safe <span class="tag">10 min</span></h4>
+  <span class="hil">Bantayi ang imo kwarta: kilalaha ang scam</span>
+  <p>Online sellers are a favourite target. Read each message a "buyer" or "support" sent. Scam or safe? Tap to see.</p>
+  <div class="spots">${SCAMS.map(([q,a,h])=>`<details class="spot"><summary>${q}</summary><p>${a}</p><p class="hil">${h}</p></details>`).join("")}</div>
+  <h4>Ask AI: is this a scam?</h4>
+  <p class="check"><mark class="alert">Remove names, phone numbers and account numbers first.</mark> Paste only the words of the message.</p>
+  <div class="prompt" id="cp-SC" data-tp="SC"></div><div id="cp-SCh" data-tp="SCh" hidden></div>
+  <div class="btnrow"><button type="button" class="copy" data-copy="cp-SC">Copy prompt</button><button type="button" class="copy" data-copy="cp-SCh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
+  <p class="tip tip-warn"><b>If you were scammed</b><span>1. Report it right away in your GCash, Maya or bank app (Help Center). 2. Call the CICC hotline <b>1326</b>. 3. Keep the chat and screenshots as evidence. It is not your fault: scammers trick careful people too.</span><span class="hil">Kon na-scam ka: i-report dayon sa imo app, kag tawagi ang CICC hotline 1326.</span></p></div>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1156,7 +1168,7 @@ const PARTS=[
   <p class="tip"><b>Halfway</b><span>Use AI once for a real sale: one post or one reply to a real customer. Then come back.</span></p>`,"No price, no sale."),
  wishBoard,
  part(5,"Get paid and keep records",`
-  ${list([["Make paying easy","GCash or Maya QR at your table and in every post; confirm by screenshot; give a simple receipt"],["Separate business money from house money","Two wallets, e.g. two e-wallets or one e-wallet plus a cash box. Pay yourself a fixed amount."],["Keep a simple sales record","Date · item · quantity · price · paid by. Five minutes a day."],["Your records are your collateral","Regular e-wallet payments and records show lenders your business is real, even without a land title. Stay away from five-six lenders."]])}
+  ${list([["Make paying easy","GCash or Maya QR at your table and in every post; check that the money is in your own app before you ship (a screenshot can be faked); give a simple receipt"],["Separate business money from house money","Two wallets, e.g. two e-wallets or one e-wallet plus a cash box. Pay yourself a fixed amount."],["Keep a simple sales record","Date · item · quantity · price · paid by. Five minutes a day."],["Your records are your collateral","Regular e-wallet payments and records show lenders your business is real, even without a land title. Stay away from five-six lenders."]])}
   ${task(4,"From notebook to table","<p class='check'>Attach a photo of one notebook page, or use the sample rows. <mark class='alert'>Cover customer names.</mark> Check every number.</p>")}
   ${priceCard}`,"Good records open doors to better loans."),
  part(6,"Keep selling when disaster hits",`
@@ -1174,6 +1186,7 @@ const PARTS=[
    <details class="spot"><summary>"Every home food seller needs a Barangay Food Seller Permit No. 7."</summary><p>A made-up rule. Ask the Negosyo Center or the City BPLO which permits you really need.</p></details>
    <details class="spot"><summary>"Our organic coconut oil cures diabetes!"</summary><p>Two problems: a health claim you cannot prove, and "organic" without certification.</p></details>
   </div>
+  ${scamCheck}
   <p class="never"><strong>Do not paste full names, phone numbers, addresses or GCash numbers into AI.</strong><span>Data Privacy Act of 2012: collect only what you need, keep it safe.</span></p>
   <p>AI is free, your time is not: use AI for tasks you repeat (posts, replies, records). Start with one task a week.</p>`,"Sounding sure is not the same as being right."),
  part(8,"My 30-day plan",`
