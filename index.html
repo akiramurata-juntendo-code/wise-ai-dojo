@@ -173,7 +173,7 @@ form.quiz .dots-legend{max-width:none}
 .wb-list{display:grid}.wish-row{display:grid;gap:4px;padding:10px 0;border-bottom:1px dotted var(--line)}
 .reflect textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:12px;width:100%;min-height:120px;resize:vertical}
 #planweeks label,#postsurvey .tip{display:grid;gap:2px}#planweeks label .hil{font-weight:400;font-size:.8rem}#planweeks label .hil::before{content:none}
-#planweeks h4 .tag,#postsurvey h4 .tag{white-space:nowrap;display:inline-block}
+.reflect h4 .tag{white-space:nowrap;display:inline-block}
 #postsurvey a.btn{text-decoration:none;color:#2A1A00}
 .vgrid{display:grid;gap:12px}
 @media (min-width:820px){.vgrid{grid-template-columns:1fr 1fr}}
@@ -667,7 +667,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>4 Tell and sell</td><td>S26–S33</td><td>Five-part post checklist; few-shot card with two participants' products (with and without examples, then a MassKara story in #context); Task 3; three checks; halfway challenge</td><td>G3</td></tr>
         <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
         <tr><td>Day 2: Talk to AI (voice)</td><td>–</td><td>Warm-up after the Wish Board, 15 min. Keyboard microphone (voice typing) and voice chat; 3 tries: speak your story → post, say your sales → table, practise a hard customer. Hiligaynon voice typing may not work: speak Filipino or English and ask for Hiligaynon. Never say MPIN, OTP or customer details.</td><td>W1–W2, B1</td></tr>
-        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes)</td><td>B1, B2</td></tr>
+        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes); "Help and capital near you" (Negosyo Center, BMBE, DOST SETUP, SB Corp P3 vs 5-6, DSWD/DOLE) with a business-profile prompt</td><td>B1, B2</td></tr>
         <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link</td><td>K1</td></tr>
         <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326</td><td>S1</td></tr>
         <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; My 4 weeks; my answers to the three questions; Save my 30-day plan as PDF; after-workshop survey button</td><td>K2</td></tr>
@@ -1188,6 +1188,22 @@ const voiceCard=`<article class="lpart" id="voice"><span class="lnum">Day 2 · w
   <p class="tip"><b>Check numbers and names</b><span>Voice typing can mix up "fifteen" and "fifty", or write a wrong name. Read every price and number before you send, and fix it with the keyboard.</span><span class="hil">Tan-awa liwat ang presyo kag numero antes mo i-send.</span></p>
   <p class="tip tip-warn"><b>Do not say these out loud</b><span><mark class="alert">MPIN, OTP, passwords, customers' names, phone numbers or addresses.</mark> People near you can hear, and the AI app keeps what you say (ChatGPT keeps voice-chat audio for 30 days).</span><span class="hil">Indi pagsiling ang MPIN, OTP, password, ukon ngalan kag numero sang customer.</span></p>
   <p class="key">Talk first, then check. AI drafts, you decide.</p></article>`;
+// Help and capital near you (end of Part 5): from the wishes about capital and equipment
+TP.HP="#role\nYou are a friendly business adviser at a DTI Negosyo Center in Negros Occidental.\n#context\nI sell [product] in [place]. My price: [price]. My best customers: [best customers].\nI want help with: ___ (for example: a machine, money for more stock, registering my business, training)\n#task\n1. Write a short profile of my business (5 lines) that I can show at the Negosyo Center or DOST.\n2. List 5 questions they may ask me, with the simple facts I should prepare (for example: monthly sales, how long I have been selling).\n3. List the papers I should bring.\n#style\nSimple English. Short.\n#rules\nDo not ask for my ID numbers, TIN, bank account or home address. Remind me that requirements change, so I must confirm them with the office.";TP.HPh=hilTp(TP.HP);
+const HELP=[["🏢 DTI Negosyo Center, Kabankalan City","Start here. Free business advice and mentoring, help to register your business name, the BMBE certificate, and referrals to training and loans. Ask: <i>Which training and loans fit my business?</i>","Diri ka magsugod. Libre nga laygay para sa imo negosyo."],
+ ["📄 BMBE certificate: free","For a business with assets up to ₱3 million (land not counted). No income tax on the business income, priority for some government loans, and training. Bring your DTI business name certificate. Valid for 2 years. Register your business name first, online at bnrs.dti.gov.ph.","Libre ang BMBE. Una, iparehistro ang ngalan sang imo negosyo sa DTI."],
+ ["⚙️ DOST SETUP: machines and better products","For equipment such as a grater, presser, sealer or oven: DOST can fund it, and you pay it back over 3 years <b>without interest</b>, starting after the first year. DOST also helps with product testing, packaging and food safety. Ask DOST Negros Occidental (provincial office) or the Negosyo Center.","Para sa makina: bayaran sa 3 ka tuig, wala sing interes."],
+ ["💰 Small loans, not 5-6","5-6 means you borrow ₱5,000 and pay back ₱6,000, often in about a month: that is about 20% a month. DTI's SB Corp lends to micro businesses through its P3 program at up to 2.5% a month, through partner lenders, if you have sold for at least 6 months. SB Corp also lists a Women's Enterprise Fund: ask the Negosyo Center which one fits.","Likawi ang 5-6. Kwentaha anay ang matuod nga gasto sang utang."],
+ ["🤝 Groups and households in need","DSWD's Sustainable Livelihood Program gives seed capital to community associations of poor and vulnerable households: ask the City Social Welfare and Development Office. DOLE gives livelihood starter kits to informal workers: ask the city PESO.","Puwede kamo mag-grupo para makakuha sang bulig."]];
+const helpCard=`<div class="reflect" id="helpcap"><h4>Help and capital near you <span class="tag">10 min</span></h4>
+  <span class="hil">Bulig kag puhunan para sa imo negosyo</span>
+  <p>You do not have to grow alone. These government offices help small businesses, many of them for free. Tap each one.</p>
+  ${HELP.map(([t,b,h])=>`<details class="spot"><summary>${t}</summary><p>${b}</p><span class="hil">${h}</span></details>`).join("")}
+  <p class="tip"><b>They will ask about your numbers</b><span>What you sell, how long you have been selling, your monthly sales and what you need. Your sales table (Task 4) and "Price it right" answer most of it. Programmes and rules change, so always confirm with the office.</span></p>
+  <p>Get ready with AI: a short profile of your business and the questions to prepare.</p>
+  <div class="prompt" id="cp-HP" data-tp="HP"></div><div id="cp-HPh" data-tp="HPh" hidden></div>
+  <div class="btnrow"><button type="button" class="copy" data-copy="cp-HP">Copy prompt</button><button type="button" class="copy" data-copy="cp-HPh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
+  <p class="tip tip-warn"><b>Keep these out of AI</b><span><mark class="alert">ID numbers, TIN, bank account numbers and your home address.</mark> Bring them on paper to the office instead.</span><span class="hil">Indi pag-type sa AI ang imo ID number, TIN, bank account ukon address.</span></p></div>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1226,7 +1242,8 @@ const PARTS=[
  part(5,"Get paid and keep records",`
   ${list([["Make paying easy","GCash or Maya QR at your table and in every post; check that the money is in your own app before you ship (a screenshot can be faked); give a simple receipt"],["Separate business money from house money","Two wallets, e.g. two e-wallets or one e-wallet plus a cash box. Pay yourself a fixed amount."],["Keep a simple sales record","Date · item · quantity · price · paid by. Five minutes a day."],["Your records are your collateral","Regular e-wallet payments and records show lenders your business is real, even without a land title. Stay away from five-six lenders."]])}
   ${task(4,"From notebook to table","<p class='check'>Attach a photo of one notebook page, or use the sample rows. <mark class='alert'>Cover customer names.</mark> Check every number.</p>")}
-  ${priceCard}`,"Good records open doors to better loans."),
+  ${priceCard}
+  ${helpCard}`,"Good records open doors to better loans."),
  part(6,"Keep selling when disaster hits",`
   <p>Disasters hit marketing too: customers stay home, roads close, power and signal drop, stock is damaged. Tick the moves you already have:</p>
   ${chips("moves",["Customer list backed up outside my phone","Open / closed messages ready","Delivery or pre-orders","Selling what people need now","Partner sellers for delivery"])}
