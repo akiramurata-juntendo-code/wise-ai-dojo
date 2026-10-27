@@ -677,8 +677,8 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
         <tr><td>Day 2: Talk to AI (voice)</td><td>–</td><td>Warm-up after the Wish Board, 15 min. Keyboard microphone (voice typing) and voice chat; 3 tries: speak your story → post, say your sales → table, practise a hard customer. Hiligaynon voice typing may not work: speak Filipino or English and ask for Hiligaynon. Never say MPIN, OTP or customer details.</td><td>W1–W2, B1</td></tr>
         <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes); "Lista: selling on credit" (6 rules, codes not names, reminder and lista-table prompts); "Help and capital near you" (Negosyo Center, BMBE, DOST SETUP, SB Corp P3 vs 5-6, DSWD/DOLE) with a business-profile prompt</td><td>B1, B2</td></tr>
-        <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link</td><td>K1</td></tr>
-        <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326</td><td>S1</td></tr>
+        <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link; "Protect yourself and your income" (SSS for self-employed, PhilHealth, microinsurance, PCIC, typhoon fund) with a plan prompt</td><td>K1</td></tr>
+        <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326; "Safe online as a woman seller" (Safe Spaces Act; screenshot, block, report; barangay VAW desk, PNP WCPD, PNP ACG, CICC 1326) with a message-check prompt</td><td>S1</td></tr>
         <tr><td>Plan ahead: the selling year</td><td>–</td><td>12 month tiles for southern Negros (Sinulog de Kabankalan, tiempo muerto, Charter Day, milling season, Undas, Christmas, typhoon season); this month and the next two are marked; 3-month post and offer prompt. Feeds the 30-day plan.</td><td>G1–G3</td></tr>
         <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; My 4 weeks; my answers to the three questions; Save my 30-day plan as PDF; after-workshop survey button</td><td>K2</td></tr>
       </tbody>
@@ -1259,6 +1259,32 @@ const listaCard=`<div class="reflect" id="lista"><h4>Lista: selling on credit <s
     <div class="prompt" id="cp-LT" data-tp="LT"></div><div id="cp-LTh" data-tp="LTh" hidden></div>
     <div class="btnrow"><button type="button" class="copy" data-copy="cp-LT">Copy prompt</button><button type="button" class="copy" data-copy="cp-LTh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div></div>
   <p class="check">Check every amount the AI gives back. Your notebook is the record; AI only helps you read it.</p></div>`;
+// Safety net (Part 6) and safe online as a woman seller (Part 7)
+TP.SN="#role\nYou explain social protection in the Philippines in very simple words.\n#context\nI am a self-employed woman in [place]. I sell [product]. My income is about ₱___ a month.\n#task\n1. Explain what SSS and PhilHealth give a self-employed woman: maternity, sickness, hospital.\n2. Make a simple monthly plan to pay them, plus a small emergency fund for typhoon season.\n3. List 5 questions to ask at the SSS and PhilHealth offices.\n#style\nSimple English. Short.\n#rules\nDo not ask for my SSS or PhilHealth number or any ID. Remind me to confirm amounts with SSS and PhilHealth.";TP.SNh=hilTp(TP.SN);
+TP.WS="#role\nYou are a calm helper for a woman who sells online in [place].\n#context\nA stranger sent me this message. I removed names and numbers:\n___ (paste the message here)\n#task\n1. Is it harassment, a scam, or just a rude buyer?\n2. Give me one short, polite reply, or tell me not to reply.\n3. List my next steps: save evidence, block, report.\n#style\nSimple English. Short.\n#rules\nDo not ask for my name, address or phone number.";TP.WSh=hilTp(TP.WS);
+const NET=[["🤰 SSS for self-employed women","Register as self-employed at sss.gov.ph or an SSS branch. You pay 15% of the income you declare; the lowest level is about ₱750 a month. You get maternity pay (105 days for a live birth), sickness, disability, retirement and death benefits, and loans once you have paid long enough. For maternity pay you need at least 3 monthly contributions in the year before the birth, so start early.","Puwede ka magbayad sa SSS bisan wala ka amo."],
+ ["🏥 PhilHealth","Every Filipino is covered under the Universal Health Care law. If you earn from your own business, you pay 5% of your income, at least ₱500 a month. Families in 4Ps and indigent families are paid for by the government. PhilHealth helps pay hospital bills and gives check-ups at accredited clinics.","Ang PhilHealth nagabulig sa bayad sa ospital."],
+ ["☂️ Microinsurance","Small, low-cost cover for accident, life, hospital or house damage, sold through microfinance groups, cooperatives and e-wallet apps. Before you pay, check that the company is licensed on the Insurance Commission website (insurance.gov.ph).","Tan-awa anay kon lisensyado ang kompanya."],
+ ["🌾 If you also farm","Crop and livestock insurance from PCIC is free for farmers listed in the RSBSA. Ask your city or municipal agriculture office.","Libre ang insurance sang PCIC para sa mga mangunguma nga nalista sa RSBSA."],
+ ["🐷 Your own typhoon fund","Save a little every day in a separate e-wallet or alkansya: ₱20 a day is ₱600 a month. Use it only when the store must close.","Mag-tipon sing diutay kada adlaw para sa bagyo."]];
+const netCard=`<div class="reflect" id="safetynet"><h4>Protect yourself and your income <span class="tag">10 min</span></h4>
+  <span class="hil">Protektahi ang imo kaugalingon kag ang imo kita</span>
+  <p>When you are sick, give birth, or a typhoon closes your store, your income stops. A small monthly payment keeps a safety net under you and your family. Tap each one.</p>
+  ${NET.map(([t,b,h])=>`<details class="spot"><summary>${t}</summary><p>${b}</p><span class="hil">${h}</span></details>`).join("")}
+  <p>Ask AI to explain it for your situation and to make a payment plan.</p>
+  <div class="prompt" id="cp-SN" data-tp="SN"></div><div id="cp-SNh" data-tp="SNh" hidden></div>
+  <div class="btnrow"><button type="button" class="copy" data-copy="cp-SN">Copy prompt</button><button type="button" class="copy" data-copy="cp-SNh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
+  <p class="tip tip-warn"><b>Keep these out of AI</b><span><mark class="alert">Your SSS number, PhilHealth number and ID numbers.</mark> Amounts and rules change, so confirm them at the SSS and PhilHealth offices.</span><span class="hil">Indi pag-type sa AI ang imo SSS ukon PhilHealth number.</span></p></div>`;
+const womanCard=`<div class="reflect" id="womansafe"><h4>Safe online as a woman seller <span class="tag">10 min</span></h4>
+  <span class="hil">Luwas online bilang babaye nga nagabaligya</span>
+  <p>Selling online means strangers message you. Most are real buyers. Some send rude, sexual or threatening messages. <b>That is not your fault</b>, and in the Philippines it is against the law: gender-based online sexual harassment is covered by the Safe Spaces Act (RA 11313).</p>
+  <span class="hil">Indi ini imo sala.</span>
+  ${list([["Do not reply or argue.","Stop the chat. You owe a stranger no answer."],["Save the evidence.","Screenshot the messages with the date, and copy the link to the sender's profile."],["Block and report.","In Messenger or Facebook: tap the name, then Block and Report."],["Report it to people who can act.","Your barangay VAW desk; the police Women and Children Protection Desk; the PNP Anti-Cybercrime Group e-complaint at acg.pnp.gov.ph; or the CICC hotline 1326."]])}
+  <p class="tip"><b>Before it happens</b><span>Sell from a Facebook Page, separate from your personal profile. Do not post your home address, or your children's photos next to your shop. Meet buyers in a public place, in daylight, with someone you trust.</span><span class="hil">Makigkita sa buyer sa publiko nga lugar, sa adlaw, upod ang imo ginasaligan.</span></p>
+  <p>Not sure what a message is? Ask AI, without names or numbers.</p>
+  <div class="prompt" id="cp-WS" data-tp="WS"></div><div id="cp-WSh" data-tp="WSh" hidden></div>
+  <div class="btnrow"><button type="button" class="copy" data-copy="cp-WS">Copy prompt</button><button type="button" class="copy" data-copy="cp-WSh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
+  <p class="check">If you are in danger now, call 911 or go to the nearest police station.</p></div>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1306,6 +1332,7 @@ const PARTS=[
   <div class="reflect">${inp("c-haz","Which hazard","ashfall")}</div>
   ${task(5,'My "still open" message plan')}
   ${readyMsgs}
+  ${netCard}
   <p class="check">Follow official PAGASA and PHIVOLCS advisories first. HANDA, the DOST–PHIVOLCS preparedness platform, turns an official advisory into actions: <a href="https://handa.georisk.gov.ph" target="_blank" rel="noopener">handa.georisk.gov.ph</a></p>`,"A ready message is faster than a worried one."),
  part(7,"Use AI safely",`
   <p>AI can invent prices, laws, numbers and facts, and sound sure. Always check numbers, names, dates, health claims and legal rules.</p>
@@ -1316,6 +1343,7 @@ const PARTS=[
    <details class="spot"><summary>"Our organic coconut oil cures diabetes!"</summary><p>Two problems: a health claim you cannot prove, and "organic" without certification.</p></details>
   </div>
   ${scamCheck}
+  ${womanCard}
   <p class="never"><strong>Do not paste full names, phone numbers, addresses or GCash numbers into AI.</strong><span>Data Privacy Act of 2012: collect only what you need, keep it safe.</span></p>
   <p>AI is free, your time is not: use AI for tasks you repeat (posts, replies, records). Start with one task a week.</p>`,"Sounding sure is not the same as being right."),
  calCard,
