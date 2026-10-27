@@ -356,6 +356,30 @@ body{padding-bottom:96px}
  .btnrow:has(.copy){display:grid;grid-template-columns:1fr 1fr}
  .btnrow:has(.copy) .copy,.btnrow:has(.copy) .open{justify-self:stretch;justify-content:center;text-align:center;padding-inline:8px}
 }
+/* emoji markers and text size (28 Oct) */
+.t-ico{margin-right:6px}
+.lnum .ico{font-size:1.15em;margin-right:6px;font-family:initial}
+.jump-grid button i{background:var(--teal-soft);font-size:1.1rem;width:34px;height:34px;font-style:normal}
+.jump-grid button small{display:block;font-size:.72rem;font-weight:700;color:var(--muted);letter-spacing:.02em}
+.never>strong:first-child::before,.tip-warn>b::before{content:"⚠️ "}
+.tip:not(.tip-warn)>b::before{content:"💡 "}
+.key::before{content:"🔑 "}
+body{font-size:1.0625rem}
+html[data-fs="1"]{font-size:112.5%}
+html[data-fs="2"]{font-size:125%}
+.fs-row{position:absolute;top:12px;right:0;display:flex;gap:4px;align-items:center}
+.fs-row button{font:700 13px/1 var(--body);color:var(--teal);background:var(--surface);border:1.5px solid var(--line);border-radius:8px;min-width:40px;min-height:36px;padding:0 6px;cursor:pointer}
+.fs-row button[aria-pressed="true"]{background:var(--teal);color:var(--surface);border-color:var(--teal)}
+.fs-row button[data-fs="1"]{font-size:15px}.fs-row button[data-fs="2"]{font-size:17px}
+@media (min-width:820px){.fs-row{right:200px}}
+@media (max-width:600px){
+ .tab .t-ico{display:block;font-size:20px;line-height:1.1;margin:0 0 2px}
+ .tab{font-size:12.5px;padding-top:6px}
+ section.view [id],#course-parts>*{scroll-margin-top:84px}
+ .fab button{font-size:15px}
+ .fs-row{top:10px}
+ header .stairs{margin-block:8px 10px}
+}
 </style>
 </head>
 <body>
@@ -366,6 +390,7 @@ body{padding-bottom:96px}
     <span class="qr-cap">Scan to open on your phone</span>
     <span class="qr-hint">Tap to make it big</span>
   </button>
+  <div class="fs-row" role="group" aria-label="Text size"><button type="button" data-fs="0" aria-label="Normal text">A</button><button type="button" data-fs="1" aria-label="Larger text">A+</button><button type="button" data-fs="2" aria-label="Largest text">A++</button></div>
   <div class="stairs" aria-hidden="true"><span style="height:20%;background:var(--lv1)"></span><span style="height:40%;background:var(--lv2)"></span><span style="height:60%;background:var(--lv3)"></span><span style="height:80%;background:var(--lv4)"></span><span style="height:100%;background:var(--lv5)"></span></div>
   <div class="prog">
     <span class="prog-name">Women in Sustainable Enterprises (WISE) Program</span>
@@ -386,11 +411,11 @@ body{padding-bottom:96px}
 
 <div id="tabs-top"></div>
 <nav class="tabs" role="tablist">
-  <button class="tab" role="tab" id="tab-dojo" aria-selected="true" aria-controls="dojo">My Dojo</button>
-  <button class="tab" role="tab" id="tab-lesson" aria-selected="false" aria-controls="lesson">Lead your day</button>
-  <button class="tab" role="tab" id="tab-course" aria-selected="false" aria-controls="course">Sell smarter</button>
-  <button class="tab" role="tab" id="tab-handouts" aria-selected="false" aria-controls="handouts">Handouts</button>
-  <button class="tab" role="tab" id="tab-guide" aria-selected="false" aria-controls="guide"><span class="t-full">Facilitator guide</span><span class="t-short">Guide</span></button>
+  <button class="tab" role="tab" id="tab-dojo" aria-selected="true" aria-controls="dojo"><span class="t-ico" aria-hidden="true">🥋</span>My Dojo</button>
+  <button class="tab" role="tab" id="tab-lesson" aria-selected="false" aria-controls="lesson"><span class="t-ico" aria-hidden="true">☀️</span>Lead your day</button>
+  <button class="tab" role="tab" id="tab-course" aria-selected="false" aria-controls="course"><span class="t-ico" aria-hidden="true">🛒</span>Sell smarter</button>
+  <button class="tab" role="tab" id="tab-handouts" aria-selected="false" aria-controls="handouts"><span class="t-ico" aria-hidden="true">📄</span>Handouts</button>
+  <button class="tab" role="tab" id="tab-guide" aria-selected="false" aria-controls="guide"><span class="t-ico" aria-hidden="true">🧭</span><span class="t-full">Facilitator guide</span><span class="t-short">Guide</span></button>
 </nav>
 
 <section class="view" id="dojo" role="tabpanel" aria-labelledby="tab-dojo">
@@ -1098,7 +1123,7 @@ function cfill(t){
   const esc=x=>x.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
   return esc(t).replace(/^(#.*)$/gm,'<span class="ph">$1</span>').replace(/\[([^\]\n]+)\]/g,(m,k)=>`<mark>${esc(map[k]?map[k]:"["+k+"]")}</mark>`);
 }
-const task=(n,title,extra="")=>`<div class="reflect"><h4>AI Task ${n} · ${title} <span class="tag">10–15 min</span></h4>${extra}<div class="prompt" id="cp-T${n}" data-tp="T${n}"></div>${TP["T"+n+"h"]?`<div id="cp-T${n}h" data-tp="T${n}h" hidden></div>`:""}
+const task=(n,title,extra="")=>`<div class="reflect"><h4><span aria-hidden="true">🤖</span> AI Task ${n} · ${title} <span class="tag">10–15 min</span></h4>${extra}<div class="prompt" id="cp-T${n}" data-tp="T${n}"></div>${TP["T"+n+"h"]?`<div id="cp-T${n}h" data-tp="T${n}h" hidden></div>`:""}
   <div class="btnrow"><button type="button" class="copy" data-copy="cp-T${n}">Copy prompt</button>${TP["T"+n+"h"]?`<button type="button" class="copy" data-copy="cp-T${n}h">Copy: answer in Hiligaynon</button>`:""}<a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
   <p class="check">AI drafts, you decide.</p></div>`;
 const chips=(key,items,multi=true)=>`<div class="chips" data-key="${key}" data-multi="${multi}">${items.map(x=>`<button type="button" class="chip-btn" data-v="${x}">${x}</button>`).join("")}</div>`;
@@ -1826,17 +1851,28 @@ function show(t){
 }
 ["dojo","lesson","course","handouts","guide"].forEach(v=>$("#tab-"+v).addEventListener("click",()=>show(v)));
 document.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g){e.preventDefault();show(g.dataset.goto);const t=g.dataset.part&&document.getElementById(g.dataset.part);if(t)t.scrollIntoView({block:"start"});else window.scrollTo(0,0)}});
+// ---- Emoji markers and text size (28 Oct) ----
+const PART_ICO={cp1:"👋",cp2:"🔍",cp3:"⭐",cp4:"📣",cp5:"💰",cp6:"🌀",cp7:"🛡️",cp8:"📅",wishboard:"🌟",voice:"🎤",sellyear:"🗓️"};
+const LESSON_ICO=["🏙️","⭕","⚖️","🕒","🌱"];
+document.querySelectorAll("#course-parts > article[id] > .lnum").forEach(l=>{const i=PART_ICO[l.parentElement.id];l.dataset.label=l.textContent;if(i)l.innerHTML=`<span class="ico" aria-hidden="true">${i}</span>${l.textContent}`});
+document.querySelectorAll("#lesson article.lpart > .lnum").forEach((l,k)=>{l.dataset.label=l.textContent;if(LESSON_ICO[k])l.innerHTML=`<span class="ico" aria-hidden="true">${LESSON_ICO[k]}</span>${l.textContent}`});
+document.querySelectorAll("#lesson .tag, #course .tag").forEach(t=>{const x=t.textContent.trim();if(/^\d[\d–-]* min$/.test(x))t.textContent="⏱ "+x;else if(x==="take home")t.textContent="🏠 take home"});
+const FSK="wise-dojo-fs";
+function setFs(v){v=String(v||0);if(v==="0")delete document.documentElement.dataset.fs;else document.documentElement.dataset.fs=v;
+  document.querySelectorAll(".fs-row button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.fs===v));try{localStorage.setItem(FSK,v)}catch(e){}}
+setFs((()=>{try{return localStorage.getItem(FSK)}catch(e){return null}})()||"0");
+document.querySelectorAll(".fs-row button").forEach(b=>b.addEventListener("click",()=>setFs(b.dataset.fs)));
 // ---- Phone navigation (28 Oct): jump grid, Today button, floating Contents / Top, contents sheet ----
 const PH_TODAY={"2026-10-28":"wishboard"};
 const todayId=(()=>{try{return PH_TODAY[new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Manila"})]||null}catch(e){return null}})();
 const plainText=el=>{if(!el)return"";const c=el.cloneNode(true);c.querySelectorAll(".tag,.hil").forEach(x=>x.remove());return c.textContent.replace(/\s+/g," ").trim()};
 const JUMP_ICON={wishboard:"★",voice:"🎤",sellyear:"📅"};
-const partNo=a=>(a.querySelector(".lnum")?.textContent.match(/^Part (\d+)/)||[])[1];
+const partNo=a=>{const l=a.querySelector(".lnum");return ((l?.dataset.label||l?.textContent||"").match(/^Part (\d+)/)||[])[1]};
 function jumpTo(id){const el=document.getElementById(id);if(!el)return;const v=el.closest("section.view");if(v&&v.hidden)show(v.id);el.scrollIntoView({block:"start"})}
 (function(){
   const arts=[...document.querySelectorAll("#course-parts > article[id]")];
   const t=todayId&&document.getElementById(todayId);
-  const btn=a=>`<button type="button" data-jump="${a.id}"${a.id===todayId?' class="is-today"':""}><i>${partNo(a)||JUMP_ICON[a.id]||"•"}</i><span>${plainText(a.querySelector("h3"))}</span></button>`;
+  const btn=a=>`<button type="button" data-jump="${a.id}"${a.id===todayId?' class="is-today"':""}><i aria-hidden="true">${PART_ICO[a.id]||partNo(a)||"•"}</i><span><small>${a.querySelector(".lnum")?.dataset.label||""}</small>${plainText(a.querySelector("h3"))}</span></button>`;
   (document.getElementById("sell-vid-intro")||document.getElementById("mydetails")).insertAdjacentHTML("beforebegin",`<nav class="jump" aria-label="Go to a part"><h3>Go to a part</h3>${t?`<button type="button" class="jump-today" data-jump="${todayId}"><span>Today starts here: ${plainText(t.querySelector("h3"))}</span><span aria-hidden="true">→</span></button>`:""}<div class="jump-grid">${arts.map(btn).join("")}</div></nav>`);
 })();
 function tocEntries(view){
@@ -1844,7 +1880,7 @@ function tocEntries(view){
   if(view.id==="course"){
     out.push(["mydetails","My details",0]);
     view.querySelectorAll("#course-parts > article[id]").forEach(a=>{
-      const n=partNo(a);out.push([a.id,(n?"Part "+n+" · ":"")+plainText(a.querySelector("h3")),0]);
+      const n=partNo(a);out.push([a.id,(PART_ICO[a.id]?PART_ICO[a.id]+" ":"")+(n?"Part "+n+" · ":"")+plainText(a.querySelector("h3")),0]);
       a.querySelectorAll(":scope > .reflect > h4, :scope > h4").forEach((h,j)=>{const box=h.parentElement===a?h:h.parentElement;if(!box.id)box.id=a.id+"-s"+j;out.push([box.id,plainText(h),1])});
     });
   }else view.querySelectorAll("h3").forEach((h,j)=>{if(!h.offsetParent)return;const box=h.closest("article")||h;if(!box.id)box.id=view.id+"-h"+j;if(!out.some(e=>e[0]===box.id))out.push([box.id,plainText(h),0])});
