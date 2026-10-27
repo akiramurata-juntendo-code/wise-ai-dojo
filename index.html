@@ -673,11 +673,11 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>1 Opening</td><td>S02–S11</td><td>Before/after, Lorna, three questions; Wish Round (one wish each, sent by form)</td><td>W1</td></tr>
         <tr><td>2 Know your customer</td><td>S12–S18</td><td>Tap the 4 influences and the weakest step; Task 1</td><td>G1</td></tr>
         <tr><td>3 Choose and stand out</td><td>S19–S25</td><td>Pick what makes me different; promise builder; Task 2</td><td>G2</td></tr>
-        <tr><td>4 Tell and sell</td><td>S26–S33</td><td>Five-part post checklist; few-shot card with two participants' products (with and without examples, then a MassKara story in #context); Task 3; three checks; halfway challenge</td><td>G3</td></tr>
+        <tr><td>4 Tell and sell</td><td>S26–S33</td><td>Five-part post checklist; few-shot card with two participants' products (with and without examples, then a MassKara story in #context); Task 3; three checks; halfway challenge; take-home "Sell beyond Kabankalan" (label, FDA, BIR for online marketplaces, packing, pasalubong) with a checklist prompt</td><td>G3</td></tr>
         <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
         <tr><td>Day 2: Talk to AI (voice)</td><td>–</td><td>Warm-up after the Wish Board, 15 min. Keyboard microphone (voice typing) and voice chat; 3 tries: speak your story → post, say your sales → table, practise a hard customer. Hiligaynon voice typing may not work: speak Filipino or English and ask for Hiligaynon. Never say MPIN, OTP or customer details.</td><td>W1–W2, B1</td></tr>
-        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes); "Lista: selling on credit" (6 rules, codes not names, reminder and lista-table prompts); "Help and capital near you" (Negosyo Center, BMBE, DOST SETUP, SB Corp P3 vs 5-6, DSWD/DOLE) with a business-profile prompt</td><td>B1, B2</td></tr>
-        <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link; "Protect yourself and your income" (SSS for self-employed, PhilHealth, microinsurance, PCIC, typhoon fund) with a plan prompt</td><td>K1</td></tr>
+        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes); "Lista: selling on credit" (6 rules, codes not names, reminder and lista-table prompts); "Help and capital near you" (Negosyo Center, BMBE, DOST SETUP, SB Corp P3 vs 5-6, DSWD/DOLE) with a business-profile prompt; take-home "Buy together" (group buying, women's groups, cooperatives, DTI Shared Service Facilities) with a price-comparison prompt</td><td>B1, B2</td></tr>
+        <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link; "Protect yourself and your income" (SSS for self-employed, PhilHealth, microinsurance, PCIC, typhoon fund) with a plan prompt; take-home "Keep your phone working" (power bank, battery, data, offline copies, floods) with a brownout-plan prompt</td><td>K1</td></tr>
         <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326; "Safe online as a woman seller" (Safe Spaces Act; screenshot, block, report; barangay VAW desk, PNP WCPD, PNP ACG, CICC 1326) with a message-check prompt</td><td>S1</td></tr>
         <tr><td>Plan ahead: the selling year</td><td>–</td><td>12 month tiles for southern Negros (Sinulog de Kabankalan, tiempo muerto, Charter Day, milling season, Undas, Christmas, typhoon season); this month and the next two are marked; 3-month post and offer prompt. Feeds the 30-day plan.</td><td>G1–G3</td></tr>
         <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; My 4 weeks; my answers to the three questions; Save my 30-day plan as PDF; after-workshop survey button</td><td>K2</td></tr>
@@ -706,7 +706,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>11:45–12:00</td><td>Save PDF, send, survey</td><td>Save my 30-day plan as PDF; Send my answers (consent first). Show the after-workshop survey button and say when to answer it (the PRE form said "on the last day", 29 Oct). Read the take-home list.</td><td>–</td></tr>
       </tbody>
     </table></div>
-    <p class="tip"><b>Take home tonight</b><span>Voice tries 2 and 3 · Lista table and reminders · business profile for the Negosyo Center (Help and capital) · Ready messages 3 and 4 · SSS and PhilHealth plan (Protect yourself) · Spot the mistake · the 3-month selling plan. All prompts have a Hiligaynon button.</span></p>
+    <p class="tip"><b>Take home tonight</b><span>Voice tries 2 and 3 · Lista table and reminders · business profile for the Negosyo Center (Help and capital) · Ready messages 3 and 4 · SSS and PhilHealth plan (Protect yourself) · Spot the mistake · the 3-month selling plan · new: Sell beyond Kabankalan (Part 4), Buy together (Part 5), Keep your phone working (Part 6). All prompts have a Hiligaynon button.</span></p>
   </div>
 
   <div style="display:grid;gap:12px">
@@ -1307,6 +1307,47 @@ const womanCard=`<div class="reflect" id="womansafe"><h4>Safe online as a woman 
   <div class="prompt" id="cp-WS" data-tp="WS"></div><div id="cp-WSh" data-tp="WSh" hidden></div>
   <div class="btnrow"><button type="button" class="copy" data-copy="cp-WS">Copy prompt</button><button type="button" class="copy" data-copy="cp-WSh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
   <p class="check">If you are in danger now, call 911 or go to the nearest police station.</p></div>`;
+// Take-home local cards: sell beyond town (Part 4), buy together (Part 5), keep the phone working (Part 6)
+TP.SB="#role\nYou help small food and craft sellers in Negros Occidental sell outside their town.\n#context\nI sell [product] in [place]. My price: [price]. I want to sell to: ___ (for example: Bacolod, Manila, relatives abroad, Shopee or TikTok Shop).\n#task\n1. Check if my product can travel: how long does it keep, and how should I pack it?\n2. List what my label must show.\n3. List the permits I may need, and who to ask in Kabankalan.\n4. Suggest a shipping price I can add, and how to say it in my post.\n#style\nSimple English. Short checklist.\n#rules\nTell me to confirm permits with DTI, FDA and BIR.";TP.SBh=hilTp(TP.SB);
+TP.BT="#role\nYou help a group of women sellers in [place] buy supplies together.\n#context\nPrices I found (no names of people):\n___ (for example: Store A sugar ₱80 per kg; Wholesaler B ₱1,850 per 25-kg sack; delivery ₱150)\nWe are ___ sellers. Each of us uses about ___ a week.\n#task\n1. Make a table of the price per kg (or per piece) at each place.\n2. Show how much each of us saves in a month if we buy together, after delivery.\n3. Write 5 simple group rules: who orders, how we pay, how we record it, how we share the delivery cost, what we do if an item is bad.\n#style\nSimple English. A short table.";TP.BTh=hilTp(TP.BT);
+TP.PH="#role\nYou help a small seller keep her phone and business going during a brownout or typhoon.\n#context\nI sell [product] in [place]. Brownouts may last ___ days. I have ___ (a power bank / no power bank).\n#task\n1. Make a 3-day checklist: when to charge, how to save battery, what to save on paper or offline.\n2. Tell me which apps to keep and which to close.\n3. Write one short message for my customers that I can send by SMS if data is down.\n#style\nSimple English. Short.";TP.PHh=hilTp(TP.PH);
+const tapCards=rows=>rows.map(([t,b,h])=>`<details class="spot"><summary>${t}</summary><p>${b}</p>${h?`<span class="hil">${h}</span>`:""}</details>`).join("");
+const promptBox=k=>`<div class="prompt" id="cp-${k}" data-tp="${k}"></div><div id="cp-${k}h" data-tp="${k}h" hidden></div>
+  <div class="btnrow"><button type="button" class="copy" data-copy="cp-${k}">Copy prompt</button><button type="button" class="copy" data-copy="cp-${k}h">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>`;
+const BEYOND=[["🏷️ A label that sells and is legal","At least: product name, net weight or volume, ingredients (biggest amount first), your business name and address, expiry or best-before date, and a batch number. Name allergens such as peanuts or milk. A clear label also makes buyers in Bacolod or Manila trust you.","Ang label: ngalan, timbang, sangkap, ngalan kag address sang negosyo, expiry."],
+ ["📋 Food permits","Packed, processed food sold in shops or online usually needs an FDA License to Operate and product registration, and a production area separate from the home kitchen. This takes time: ask the Negosyo Center, because DTI and DOST help small food makers prepare.","Pamangkot sa Negosyo Center parte sa FDA."],
+ ["🛒 Shopee, Lazada, TikTok Shop","Before you sell on an online marketplace, you need a BIR Certificate of Registration. The platform keeps 1% of what it pays you for the BIR. If your sales for the year will stay at ₱500,000 or less, give the platform a sworn declaration so it does not deduct the 1%. Ask the BIR or the Negosyo Center which tax option fits a small seller.","Magparehistro anay sa BIR antes magbaligya sa online nga tindahan."],
+ ["📦 Packing and shipping","Ship dry, sealed products first; avoid shipping fresh food far. Double-bag, fill gaps, mark it FRAGILE. Ship early in the week so parcels do not sit in a warehouse over the weekend. Put the shipping fee in your price list, and take payment before you ship.","Bayad anay antes ipadala."],
+ ["🎁 Pasalubong and trade fairs","Visitors and families of OFWs buy pasalubong to bring home. Ask the Negosyo Center about DTI trade fairs and stores that take local products. Bring samples with your label done.","Pasalubong: para sa mga bisita kag pamilya sang OFW."]];
+const beyondCard=`<div class="reflect" id="beyond"><h4>Sell beyond Kabankalan <span class="tag">take home</span></h4>
+  <span class="hil">Magbaligya sa gwa sang Kabankalan</span>
+  <p>Bacolod, Manila, relatives abroad, online marketplaces: more buyers, but also a label, permits and safe packing. Tap each one.</p>
+  ${tapCards(BEYOND)}
+  <p>Ask AI for your own checklist.</p>
+  ${promptBox("SB")}
+  <p class="check">Rules change. Confirm permits with DTI, FDA and BIR before you sell outside your town.</p></div>`;
+const BUY=[["💸 Why buy together","Wholesale prices are lower, and one delivery shared by 4 or 5 sellers costs each of you less. You also learn which supplier is fair.","Mas barato kon sabay kamo magbakal."],
+ ["🤝 How to start this week","Find 3–5 sellers who use the same supplies: sugar, flour, oil, jars, plastic bags, labels. Choose one buyer each week. Collect the money first, to one GCash or Maya account, and write down who paid. Share the delivery cost. Check the goods when they arrive.","Pangita sang 3 tubtob 5 ka kaupod."],
+ ["🏘️ From a group to an association or cooperative","Many barangays already have a women's group, such as a Rural Improvement Club or a KALIPI chapter: ask your barangay. A registered group can get more help: DSWD seed capital goes to associations, and a cooperative (at least 15 members, registered with the CDA) can borrow and buy as one.","Pamangkot sa barangay parte sa grupo sang mga babaye."],
+ ["⚙️ Share machines too","DTI Shared Service Facilities let small businesses use machines, such as packaging machines, for free. Ask the Negosyo Center where the nearest one is, and what machines it has.","Libre gamiton ang makina sa Shared Service Facility."]];
+const buyCard=`<div class="reflect" id="buytogether"><h4>Buy together <span class="tag">take home</span></h4>
+  <span class="hil">Sabay nga magbakal sang materyales</span>
+  <p>Prices of supplies keep going up. Buying together with other sellers is one of the fastest ways to lower your cost. Tap each one.</p>
+  ${tapCards(BUY)}
+  <p>Compare prices with AI: write down prices from 2 or 3 stores first.</p>
+  ${promptBox("BT")}
+  <p class="check">Write every group payment in a notebook that everyone can see.</p></div>`;
+const PHONE_TIPS=[["🔋 Before the brownout","When a typhoon signal is raised, charge your phone and power bank to full. A 10,000 mAh power bank gives most phones about 2 full charges. Watch your electric cooperative's Facebook page for brownout schedules.","Ikarga ang cellphone kag power bank antes ang bagyo."],
+ ["🪫 Make the battery last","Turn on battery saver. Lower the screen light. Close apps you are not using. Turn off mobile data when you do not need it, and turn it on to check orders at set times, for example 8 am, 12 noon and 6 pm.","Gamita ang battery saver."],
+ ["📶 Save data","A text chat with AI uses little data. Photos use more, and video and voice chat use the most. Upload photos on Wi-Fi when you can. In Facebook settings, stop videos from playing by themselves. Buy a data promo for your busy sales week.","Ang video nagagamit sang madamo nga data."],
+ ["📝 Keep it offline too","Save your price list, ready messages and customer contacts in your notes app and on paper. When data is down, SMS still works: keep some load. Keep emergency alerts turned on.","Isulat man sa papel ang importante."],
+ ["💧 Protect the phone","In floods, put your phone and power bank in a sealed plastic bag.","Isulod ang cellphone sa plastik."]];
+const phoneCard=`<div class="reflect" id="phoneon"><h4>Keep your phone working <span class="tag">take home</span></h4>
+  <span class="hil">Indi pagpabay-i nga mapatay ang imo cellphone</span>
+  <p>Your phone is your shop, your cash register and your customer list. Keep it alive through brownouts and keep your data for selling. Tap each one.</p>
+  ${tapCards(PHONE_TIPS)}
+  <p>Ask AI for a 3-day brownout plan.</p>
+  ${promptBox("PH")}</div>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1339,7 +1380,8 @@ const PARTS=[
   ${fewshot}
   ${task(3,"Post, picture idea and replies")}
   <p><b>Before you post, three checks:</b> Is the price and information correct? Does it sound like me? Did I avoid promises I cannot keep (for example "cures diabetes", or "organic" without certification)?</p>
-  <p class="tip"><b>Halfway</b><span>Use AI once for a real sale: one post or one reply to a real customer. Then come back.</span></p>`,"No price, no sale."),
+  <p class="tip"><b>Halfway</b><span>Use AI once for a real sale: one post or one reply to a real customer. Then come back.</span></p>
+  ${beyondCard}`,"No price, no sale."),
  wishBoard,
  voiceCard,
  part(5,"Get paid and keep records",`
@@ -1347,6 +1389,7 @@ const PARTS=[
   ${task(4,"From notebook to table","<p class='check'>Attach a photo of one notebook page, or use the sample rows. <mark class='alert'>Cover customer names.</mark> Check every number.</p>")}
   ${priceCard}
   ${listaCard}
+  ${buyCard}
   ${helpCard}`,"Good records open doors to better loans."),
  part(6,"Keep selling when disaster hits",`
   <p>Disasters hit marketing too: customers stay home, roads close, power and signal drop, stock is damaged. Tick the moves you already have:</p>
@@ -1355,6 +1398,7 @@ const PARTS=[
   ${task(5,'My "still open" message plan')}
   ${readyMsgs}
   ${netCard}
+  ${phoneCard}
   <p class="check">Follow official PAGASA and PHIVOLCS advisories first. HANDA, the DOST–PHIVOLCS preparedness platform, turns an official advisory into actions: <a href="https://handa.georisk.gov.ph" target="_blank" rel="noopener">handa.georisk.gov.ph</a></p>`,"A ready message is faster than a worried one."),
  part(7,"Use AI safely",`
   <p>AI can invent prices, laws, numbers and facts, and sound sure. Always check numbers, names, dates, health claims and legal rules.</p>
