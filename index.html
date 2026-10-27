@@ -171,6 +171,10 @@ form.quiz .dots-legend{max-width:none}
 .wb-en{display:block;font-size:.88rem;color:var(--muted);font-style:italic;margin-top:2px}
 .wish-send{justify-self:start;text-decoration:none;display:inline-block}
 .wb-list{display:grid}.wish-row{display:grid;gap:4px;padding:10px 0;border-bottom:1px dotted var(--line)}
+.reflect textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:12px;width:100%;min-height:120px;resize:vertical}
+#planweeks label,#postsurvey .tip{display:grid;gap:2px}#planweeks label .hil{font-weight:400;font-size:.8rem}#planweeks label .hil::before{content:none}
+#planweeks h4 .tag,#postsurvey h4 .tag{white-space:nowrap;display:inline-block}
+#postsurvey a.btn{text-decoration:none;color:#2A1A00}
 .msgcard{display:grid;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
 .msg{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.95rem}.msg-hil{font-style:italic}
 .msg mark{background:var(--mango-soft);color:var(--mango-ink);padding:0 2px;border-radius:3px}
@@ -660,7 +664,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes)</td><td>B1, B2</td></tr>
         <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link</td><td>K1</td></tr>
         <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326</td><td>S1</td></tr>
-        <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; my answers to the three questions</td><td>K2</td></tr>
+        <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; My 4 weeks; my answers to the three questions; Save my 30-day plan as PDF; after-workshop survey button</td><td>K2</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -1133,6 +1137,27 @@ const scamCheck=`<div class="reflect" id="scamcheck"><h4>Scam check: keep your m
   <div class="prompt" id="cp-SC" data-tp="SC"></div><div id="cp-SCh" data-tp="SCh" hidden></div>
   <div class="btnrow"><button type="button" class="copy" data-copy="cp-SC">Copy prompt</button><button type="button" class="copy" data-copy="cp-SCh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
   <p class="tip tip-warn"><b>If you were scammed</b><span>1. Report it right away in your GCash, Maya or bank app (Help Center). 2. Call the CICC hotline <b>1326</b>. 3. Keep the chat and screenshots as evidence. It is not your fault: scammers trick careful people too.</span><span class="hil">Kon na-scam ka: i-report dayon sa imo app, kag tawagi ang CICC hotline 1326.</span></p></div>`;
+// Part 8: my 4 weeks + PDF of the 30-day plan + after-workshop (POST) survey
+const POST_FORM="https://docs.google.com/forms/d/e/1FAIpQLSd_memNP7FU72wWEo-mWAjgT0PhPkj0YnwlzswcMM9_h78cSw/viewform";
+const WEEKS=[["w-1","Week 1 · days 1–7","Semana 1","post 3 times with a photo, the price and how to order"],["w-2","Week 2 · days 8–14","Semana 2","set my price with the Price it right card"],["w-3","Week 3 · days 15–21","Semana 3","save my 4 disaster messages"],["w-4","Week 4 · days 22–30","Semana 4","ask 5 happy customers for a photo review"]];
+const planWeeks=`<div class="reflect" id="planweeks"><h4>My 4 weeks <span class="tag">10 min</span></h4>
+  <span class="hil">Akon 4 ka semana</span>
+  <p>Pick <b>one</b> action for each week, from your AI calendar or from this course. Small and done beats big and forgotten.</p>
+  <label for="w-goal">My goal in 30 days<span class="hil">Akon tulumuron sa 30 ka adlaw</span></label><input type="text" id="w-goal" data-csave placeholder="e.g. 20 new customers on Messenger">
+  ${WEEKS.map(([id,l,h,ph])=>`<label for="${id}">${l}<span class="hil">${h}</span></label><textarea id="${id}" data-csave rows="2" placeholder="e.g. ${ph}"></textarea>`).join("")}
+  <label for="w-cal">Paste the 30-day calendar AI made for you (optional)<span class="hil">I-paste diri ang kalendaryo halin sa AI</span></label><textarea id="w-cal" data-csave rows="5" placeholder="Long-press, then Paste"></textarea></div>`;
+const planSave=`<div class="reflect" id="plansave"><h4>Save my 30-day plan</h4>
+  <span class="hil">I-save ang akon plano sa 30 ka adlaw</span>
+  <p>One A4 page with your product, price, promise, goal, 4 weeks, price check and your 3 answers. Keep it on your phone or print it for your wall.</p>
+  <button type="button" class="btn btn-primary" id="plan-pdf" style="justify-self:start">Save my 30-day plan as PDF</button>
+  <p class="check" id="plan-msg" hidden></p>
+  <img id="plan-img" alt="My 30-day plan page" hidden style="border:1px solid var(--line);border-radius:8px;max-width:100%"></div>`;
+const postSurvey=`<div class="reflect" id="postsurvey"><h4>Last step: tell us how it went <span class="tag">10 min</span></h4>
+  <span class="hil">Katapusan nga tikang: isugid sa amon kon kamusta ang training</span>
+  <p>At the end of the workshop, please answer the short <b>after-workshop survey</b>. It is anonymous: no name, email or phone number.</p>
+  <p class="tip"><b>Your personal code</b><span>Write it exactly as in the pre-workshop survey: the first 2 letters of your mother's first name + the day you were born (2 digits) + the last 2 digits of your phone number. Example: Maria, born on the 7th, phone ending in 45 → <b>MA0745</b>. Did not answer the first survey? Make your code the same way and answer anyway.</span><span class="hil">Isulat ang imo code pareho sang una nga survey.</span></p>
+  <a class="btn btn-primary" href="${POST_FORM}" target="_blank" rel="noopener" style="justify-self:start">Open the after-workshop survey</a>
+  <p class="check">Salamat gid! Your answers help make the next training better.</p></div>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1192,12 +1217,15 @@ const PARTS=[
  part(8,"My 30-day plan",`
   <div class="reflect">${inp("c-date","Start date","1 November")}</div>
   ${task(6,"My 30-day marketing calendar")}
+  ${planWeeks}
   <div class="reflect"><h4>Your answers to the three questions</h4>
    ${inp("a-q1","1 · Why do customers buy from me, or walk away?","they trust my clean kitchen; they leave when I reply late")}
    ${inp("a-q2","2 · Who are my best customers, and why should they choose me?","office workers; fresh kakanin delivered by 10 am")}
    ${inp("a-q3","3 · How can AI help me sell, get paid and keep selling?","saved replies, weekly sales table, typhoon messages ready")}</div>
+  ${planSave}
   ${sendBlock()}
-  <p class="check">Lorna's answers: customers buy for culture, family, budget and trust, and she lost them with slow replies and no GCash. Her best customers are balikbayan families and office workers. AI writes her posts and replies, turns her notebook into records, and helps her keep selling after a disaster.</p>`,"AI drafts, you decide.")
+  <p class="check">Lorna's answers: customers buy for culture, family, budget and trust, and she lost them with slow replies and no GCash. Her best customers are balikbayan families and office workers. AI writes her posts and replies, turns her notebook into records, and helps her keep selling after a disaster.</p>
+  ${postSurvey}`,"AI drafts, you decide.")
 ];
 $("#course-parts").innerHTML=PARTS.join("");
 drawWishes();
@@ -1407,6 +1435,63 @@ $("#ck-pdf").addEventListener("click",async()=>{
   img.src=c.toDataURL("image/png");img.hidden=false;
   msg.textContent="PDF saving is not available on this phone. Long-press the picture below to save it, or take a screenshot.";
 });
+// ---- PDF of My 30-day plan (same A4 canvas -> jpegToPdf as My 24 hours) ----
+function planCanvas(){
+  const W=1240,H=1754,c=document.createElement("canvas");c.width=W;c.height=H;const g=c.getContext("2d");
+  const INK="#13292B",MUT="#55696A",LINE="#C9D6D4",TEAL="#0F5257";
+  const F=(w,sz)=>`${w} ${sz}px "Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif`;
+  const f=C.f||{},val=k=>String(f[k]||"").trim(),prod=val("c-product")||quizProduct();
+  g.fillStyle="#fff";g.fillRect(0,0,W,H);g.fillStyle=TEAL;g.fillRect(0,0,W,150);
+  g.fillStyle="#fff";g.font=F("700",58);g.fillText("My 30-day plan",70,92);
+  g.font=F("400",26);g.fillText("WISE AI Dojo · Sell smarter · Kabankalan City",70,130);
+  let y=205;const BOTTOM=H-100;
+  // write text word by word; stop with … when the space runs out
+  function lines(text,maxW,font){g.font=font;const out=[];let line="";
+    for(const w of String(text).split(/\s+/).filter(Boolean)){const t=line?line+" "+w:w;if(g.measureText(t).width>maxW&&line){out.push(line);line=w}else line=t}
+    if(line)out.push(line);return out}
+  function wrap(text,x,maxW,lh,font,color,limit=BOTTOM){const ls=lines(text,maxW,font);g.font=font;g.fillStyle=color;
+    for(let i=0;i<ls.length;i++){if(y>limit){return}g.fillText(ls[i]+(y+lh>limit&&i<ls.length-1?" …":""),x,y);y+=lh}}
+  function block(title,text){if(!text||y>BOTTOM-60)return;wrap(title,70,1100,32,F("700",24),TEAL);wrap(text,70,1100,32,F("400",25),INK);y+=10}
+  wrap(`I sell: ${prod||"________"}   ·   Where: ${val("c-place")||"Kabankalan City"}   ·   My price: ${val("c-price")||"____"}`,70,1100,38,F("700",28),INK);
+  wrap(`Start date: ${val("c-date")||"________"}`,70,1100,38,F("400",26),INK);y+=6;
+  const v=k=>val(k)||"…";
+  if(["p-cust","p-need","p-ben","p-oth","p-why"].some(val))block("My promise",`For ${v("p-cust")} who want ${v("p-need")}, my ${prod||"product"} gives ${v("p-ben")}, unlike ${v("p-oth")}, because ${v("p-why")}.`);
+  block("My best customers",val("c-best"));
+  // goal
+  const gt=y;g.strokeStyle="#F29F05";g.lineWidth=4;g.setLineDash([14,10]);g.strokeRect(60,gt-6,1120,110);g.setLineDash([]);y+=40;
+  wrap("My goal in 30 days: "+(val("w-goal")||"________________________"),90,1060,36,F("700",28),"#8A5700",gt+80);y=gt+140;
+  // 4 weeks, 2 x 2
+  const bw=545,bh=170,top=y;
+  WEEKS.forEach(([id,l],i)=>{const x=60+(i%2)*(bw+30),yy=top+Math.floor(i/2)*(bh+20);
+    g.fillStyle="#EEF4F3";g.fillRect(x,yy,bw,bh);g.fillStyle=TEAL;g.fillRect(x,yy,8,bh);
+    g.fillStyle=TEAL;g.font=F("700",24);g.fillText(l,x+28,yy+40);
+    const ls=lines(val(id)||"________________",bw-56,F("400",25));g.fillStyle=INK;g.font=F("400",25);
+    ls.slice(0,3).forEach((t,j)=>g.fillText(t+(j===2&&ls.length>3?" …":""),x+28,yy+80+j*32))});
+  y=top+2*(bh+20)+30;
+  const pr=[...document.querySelectorAll("#pc-out .pc-row")].map(r=>r.innerText.replace(/\s*\n\s*/," ")).join("  ·  ");
+  block("My price check",pr);
+  const qs=[["Why customers buy from me, or walk away","a-q1"],["My best customers, and why they should choose me","a-q2"],["How AI can help me sell, get paid and keep selling","a-q3"]].filter(q=>val(q[1]));
+  qs.forEach(([t,k])=>block(t,val(k)));
+  if(val("w-cal")&&y<BOTTOM-80){block("My AI calendar (from my AI chat)",val("w-cal").replace(/\s*\n\s*/g," · "))}
+  g.strokeStyle=LINE;g.lineWidth=1;g.beginPath();g.moveTo(70,H-80);g.lineTo(1170,H-80);g.stroke();
+  g.fillStyle=MUT;g.font=F("400",22);g.fillText("No customer names or numbers. AI drafts, you decide. · WISE Program · UP ISSI and Awesome AI Asia",70,H-46);
+  return c;
+}
+async function savePdfCanvas(c,name,msg,img){
+  let dl=null;try{dl=window.claude&&window.claude.use?await window.claude.use("downloads"):null}catch(_){dl=null}
+  if(dl){
+    try{await dl.save({filename:name,data:jpegToPdf(c)});msg.textContent=`Saved. Look for ${name} in your downloads.`;img.hidden=true;return}
+    catch(e){if(e&&e.code==="declined"){msg.textContent="Not saved. Tap the button again when you are ready.";return}}
+  }
+  if(!window.claude){
+    try{const u=URL.createObjectURL(jpegToPdf(c)),a=document.createElement("a");
+      a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),60000);
+      msg.textContent=`Saved. Look for ${name} in your downloads.`;img.hidden=true;return}catch(_){}
+  }
+  img.src=c.toDataURL("image/png");img.hidden=false;
+  msg.textContent="PDF saving is not available on this phone. Long-press the picture below to save it, or take a screenshot.";
+}
+$("#plan-pdf").addEventListener("click",()=>{const msg=$("#plan-msg"),img=$("#plan-img");msg.hidden=false;msg.textContent="Making your PDF…";savePdfCanvas(planCanvas(),"My-30-day-plan.pdf",msg,img)});
 drawClock(); drawCommit(); $("#lesson-send").innerHTML=sendBlock();
 // ---- quiz flow: one screen per question ----
 const form=$("#diag"), screens=[];
