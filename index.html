@@ -682,7 +682,7 @@ body{padding-bottom:96px}
   <div style="display:grid;gap:12px">
     <h3>How the quiz sets the level</h3>
     <ul>
-      <li>Q6–Q10 are plain-language versions of the five <b>CSPS capability items</b> in survey Section E (codes E-C1 to E-C5), on the same 1–5 scale. The Dojo result can be compared with pre/post survey scores.</li>
+      <li>Q6–Q10 are plain-language versions of the five <b>capability items</b> in survey Section E (codes E-C1 to E-C5), on the same 1–5 scale. The Dojo result can be compared with pre/post survey scores.</li>
       <li>Score (0–100) = capability 50% + AI-use frequency (Q5, same options as survey Q27) 30% + phone skills (Q3) 20%.</li>
       <li>Q4 (Gmail) does not change the score. Without Gmail, the path flags the Gemini Notebook step as "Needs Gmail" and suggests ChatGPT first; facilitators help make accounts at the break.</li>
       <li>The quiz has three parts with # headings (#My business, #My phone and AI, #My goals), the same structure participants later use in prompts.</li>
@@ -690,7 +690,7 @@ body{padding-bottom:96px}
       <li>Level cut-offs: Level 1 under 20, Level 2 20–39, Level 3 40–59, Level 4 60–79, Level 5 80+.</li><li>Step codes (W, Y, G, B, K, S) are for facilitators only and are hidden on the participant screen.</li>
       <li>Someone who has never used AI starts at Level 1 or 2, however high her self-rating. Her first task is to ask AI one real question.</li>
       <li>All practice prompts use the same # headings as the Day 1 morning slides (#role, #context, #task, #style, plus #rules where needed), so beginners see one prompt structure all workshop. Y1 teaches the recipe explicitly.</li>
-      <li>Q12 (goal) moves her goal modules to the front of the path. Goal modules below her level stay on the path as a quick round, so every path keeps the six deck tasks in view. Q11 (worry) adds one coaching tip, mirroring the four CSPS barrier items plus scams and mobile data.</li>
+      <li>Q12 (goal) moves her goal modules to the front of the path. Goal modules below her level stay on the path as a quick round, so every path keeps the six deck tasks in view. Q11 (worry) adds one coaching tip, mirroring the four barrier items in the survey, plus scams and mobile data.</li>
     </ul>
   </div>
 
@@ -1127,7 +1127,7 @@ const fewshot=`<div class="reflect" id="fewshot"><h4>Few-shot: show AI 2 good ex
   <p class="tip"><b>Check the facts</b><span>One AI summary of MassKara said it began after the “MV Doña Paz” collision. That is wrong: the Doña Paz sank in 1987. The 1980 ferry was the MV Don Juan. AI can mix up names and dates, so check before you post.</span></p>
   <p class="tip"><b>Next time</b><span>Put your own best post in the #example part. AI learns your style from it.</span></p></div>`;
 /*FEWSHOT-END*/
-// ---- Wish board (CSPS-style): wishes come from the wish form, are posted without names,
+// ---- Wish board: wishes come from the wish form, are posted without names,
 // and each one names the part of the course or the Dojo step that answers it.
 // {cat, w: wish as written, en: English line when w is in Hiligaynon or Filipino, tag, where, re: Dojo reply, hil: Hiligaynon line for re, tp: a prompt to try}
 const WISH_FORM="https://docs.google.com/forms/d/e/1FAIpQLSeCc5U1mlQzpxkTy2JBgn5FIyKBzNiDEGrzL20sjhFksCtL4A/viewform";
