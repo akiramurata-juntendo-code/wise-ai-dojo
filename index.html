@@ -174,6 +174,15 @@ form.quiz .dots-legend{max-width:none}
 .reflect textarea{font:inherit;color:var(--ink);background:var(--bg);border:1.5px solid var(--line);border-radius:10px;padding:12px;width:100%;min-height:120px;resize:vertical}
 #planweeks label,#postsurvey .tip{display:grid;gap:2px}#planweeks label .hil{font-weight:400;font-size:.8rem}#planweeks label .hil::before{content:none}
 .reflect h4 .tag{white-space:nowrap;display:inline-block}
+.months{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.mtile{display:grid;gap:4px;align-content:start;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:.9rem}
+.mtile>b{font-family:var(--mono);color:var(--teal)}
+.mtile .hil{font-size:.8rem}
+.mtile.now{border:2px solid var(--mango);background:var(--mango-soft,#FDF0D5)}
+.mtile.now>b::after{content:" · this month";font-family:var(--body);font-weight:600;color:var(--mango-ink)}
+.mtile.soon{border:2px solid var(--teal)}
+.mtile.soon>b::after{content:" · coming";font-family:var(--body);font-weight:600;color:var(--teal)}
+#sellyear h3 .tag{font-size:.8rem;white-space:nowrap;vertical-align:middle}
 #postsurvey a.btn{text-decoration:none;color:#2A1A00}
 .vgrid{display:grid;gap:12px}
 @media (min-width:820px){.vgrid{grid-template-columns:1fr 1fr}}
@@ -670,6 +679,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes); "Help and capital near you" (Negosyo Center, BMBE, DOST SETUP, SB Corp P3 vs 5-6, DSWD/DOLE) with a business-profile prompt</td><td>B1, B2</td></tr>
         <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link</td><td>K1</td></tr>
         <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326</td><td>S1</td></tr>
+        <tr><td>Plan ahead: the selling year</td><td>–</td><td>12 month tiles for southern Negros (Sinulog de Kabankalan, tiempo muerto, Charter Day, milling season, Undas, Christmas, typhoon season); this month and the next two are marked; 3-month post and offer prompt. Feeds the 30-day plan.</td><td>G1–G3</td></tr>
         <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; My 4 weeks; my answers to the three questions; Save my 30-day plan as PDF; after-workshop survey button</td><td>K2</td></tr>
       </tbody>
     </table></div>
@@ -1013,7 +1023,7 @@ const TP={"T1": "#role\nYou are a friendly marketing helper for small sellers in
 let C=cstore.get()||{f:{},pick:{}};C.f=C.f||{};C.pick=C.pick||{};
 const quizProduct=()=>((store.get()||{}).answers||{}).product||"";
 function cfill(t){
-  const f=C.f, map={product:f["c-product"]||quizProduct(),place:f["c-place"]||"Kabankalan City",price:f["c-price"],"who buys now":f["c-who"],"best customers":f["c-best"],"what makes me different":f["c-diff"]||(C.pick.diff||[]).join(", "),occasion:f["c-occ"],"typhoon / ashfall":f["c-haz"],date:f["c-date"]};
+  const f=C.f, map={product:f["c-product"]||quizProduct(),place:f["c-place"]||"Kabankalan City",price:f["c-price"],"who buys now":f["c-who"],"best customers":f["c-best"],"what makes me different":f["c-diff"]||(C.pick.diff||[]).join(", "),occasion:f["c-occ"],"typhoon / ashfall":f["c-haz"],date:f["c-date"],today:new Date().toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric"})};
   const esc=x=>x.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
   return esc(t).replace(/^(#.*)$/gm,'<span class="ph">$1</span>').replace(/\[([^\]\n]+)\]/g,(m,k)=>`<mark>${esc(map[k]?map[k]:"["+k+"]")}</mark>`);
 }
@@ -1204,6 +1214,30 @@ const helpCard=`<div class="reflect" id="helpcap"><h4>Help and capital near you 
   <div class="prompt" id="cp-HP" data-tp="HP"></div><div id="cp-HPh" data-tp="HPh" hidden></div>
   <div class="btnrow"><button type="button" class="copy" data-copy="cp-HP">Copy prompt</button><button type="button" class="copy" data-copy="cp-HPh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
   <p class="tip tip-warn"><b>Keep these out of AI</b><span><mark class="alert">ID numbers, TIN, bank account numbers and your home address.</mark> Bring them on paper to the office instead.</span><span class="hil">Indi pag-type sa AI ang imo ID number, TIN, bank account ukon address.</span></p></div>`;
+// The selling year in southern Negros (before Part 8): month tiles + 3-month plan prompt
+TP.CAL="#role\nYou are a marketing planner for a small seller in southern Negros, Philippines.\n#context\nToday is [today]. I sell [product] in [place]. My best customers: [best customers].\nImportant dates here: Sinulog de Kabankalan (January), Valentine's Day (14 February), graduations (March to April), Holy Week, Mother's Day (May), school opening (June), tiempo muerto (about May to August, when families have less cash), Kabankalan Charter Day (2 August), the sugar milling season (about September to April), Undas (1 to 2 November), Christmas and 13th-month pay (December), and paydays on the 15th and 30th. Typhoon season is about June to December.\n#task\n1. For the next 3 months, list the dates that matter for my product, with one post or offer idea for each.\n2. For each date, tell me what to prepare 2 weeks before.\n3. Suggest one small, low-cost offer for the tiempo muerto months.\n#style\nSimple English. A short table.";TP.CALh=hilTp(TP.CAL);
+const MONTHS=[["Jan","<b>Sinulog de Kabankalan</b>: visitors, food and pasalubong. New Year orders.","Sinulog: madamo bisita"],
+ ["Feb","<b>Valentine's Day</b> (14th): flowers, desserts, small gifts.","Adlaw sang mga Puso"],
+ ["Mar","<b>Graduations</b>, end of the school year. <b>Holy Week</b> 21–28 March 2027.","Gradwasyon kag Semana Santa"],
+ ["Apr","Summer, reunions and fiestas. Milling season ends (about April).","Tag-init kag pista"],
+ ["May","<b>Mother's Day</b> (9 May 2027), weddings. <b>Tiempo muerto</b> starts: less cash, so offer small packs.","Tiempo muerto: diutay nga pakete"],
+ ["Jun","<b>School opening</b>: baon snacks and supplies. Rain and typhoon season begins.","Pagbukas sang eskwelahan"],
+ ["Jul","<b>Tiempo muerto</b>: cash is tight. Keep prices clear; sell small packs. Floods possible.","Kulang ang kwarta"],
+ ["Aug","<b>Kabankalan Charter Day</b> (2 August). Still tiempo muerto.","Adlaw sang Syudad"],
+ ["Sep","The \"ber\" months start the Christmas mood. <b>Milling season</b> begins (about September): cane workers have cash again.","Nagasugod ang paggiling"],
+ ["Oct","MassKara in Bacolod. Take <b>Undas</b> orders now.","Kuhaa na ang orders para sa Undas"],
+ ["Nov","<b>Undas</b> (1–2 Nov): flowers, candles, food. Typhoons still possible.","Undas: bulak, kandila, pagkaon"],
+ ["Dec","<b>Christmas</b>, 13th-month pay (by 24 Dec), Simbang Gabi (16–24 Dec), New Year food. Typhoon risk: Odette hit in December 2021.","Paskwa kag 13th month"]];
+const calCard=`<article class="lpart" id="sellyear"><span class="lnum">Plan ahead</span><h3>The selling year in southern Negros <span class="tag">10 min</span></h3>
+  <span class="hil">Ang tuig sang pagbaligya sa bagatnan nga Negros</span>
+  <p>Sales go up and down with the seasons here: Sinulog, the sugar season, tiempo muerto, Undas and Christmas. Plan your posts and stock <b>2 weeks before</b> each big date. This month and the next two are marked.</p>
+  <div class="months">${MONTHS.map(([m,t,h],i)=>`<div class="mtile" data-m="${i}"><b>${m}</b><span>${t}</span><span class="hil">${h}</span></div>`).join("")}</div>
+  <p class="tip"><b>Every month</b><span>Paydays on the 15th and 30th: post the day before. In typhoon season, keep your Ready messages (Part 6) saved.</span></p>
+  <p>Ask AI for a plan for the next 3 months. Then put the first month into your 30-day plan below.</p>
+  <div class="prompt" id="cp-CAL" data-tp="CAL"></div><div id="cp-CALh" data-tp="CALh" hidden></div>
+  <div class="btnrow"><button type="button" class="copy" data-copy="cp-CAL">Copy prompt</button><button type="button" class="copy" data-copy="cp-CALh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
+  <p class="check">Dates marked "about" move a little each year. Check this year's dates with your barangay, parish or the city.</p>
+  <p class="key">Sell before the season, not during it.</p></article>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1262,6 +1296,7 @@ const PARTS=[
   ${scamCheck}
   <p class="never"><strong>Do not paste full names, phone numbers, addresses or GCash numbers into AI.</strong><span>Data Privacy Act of 2012: collect only what you need, keep it safe.</span></p>
   <p>AI is free, your time is not: use AI for tasks you repeat (posts, replies, records). Start with one task a week.</p>`,"Sounding sure is not the same as being right."),
+ calCard,
  part(8,"My 30-day plan",`
   <div class="reflect">${inp("c-date","Start date","1 November")}</div>
   ${task(6,"My 30-day marketing calendar")}
@@ -1540,6 +1575,7 @@ async function savePdfCanvas(c,name,msg,img){
   msg.textContent="PDF saving is not available on this phone. Long-press the picture below to save it, or take a screenshot.";
 }
 $("#plan-pdf").addEventListener("click",()=>{const msg=$("#plan-msg"),img=$("#plan-img");msg.hidden=false;msg.textContent="Making your PDF…";savePdfCanvas(planCanvas(),"My-30-day-plan.pdf",msg,img)});
+{const m0=new Date().getMonth();document.querySelectorAll(".mtile").forEach(t=>{const d=(+t.dataset.m-m0+12)%12;if(d<3)t.classList.add(d?"soon":"now")})}
 drawClock(); drawCommit(); $("#lesson-send").innerHTML=sendBlock();
 // ---- quiz flow: one screen per question ----
 const form=$("#diag"), screens=[];
