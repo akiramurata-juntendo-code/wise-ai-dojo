@@ -171,6 +171,10 @@ form.quiz .dots-legend{max-width:none}
 .wb-en{display:block;font-size:.88rem;color:var(--muted);font-style:italic;margin-top:2px}
 .wish-send{justify-self:start;text-decoration:none;display:inline-block}
 .wb-list{display:grid}.wish-row{display:grid;gap:4px;padding:10px 0;border-bottom:1px dotted var(--line)}
+.msgcard{display:grid;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
+.msg{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.95rem}.msg-hil{font-style:italic}
+.msg mark{background:var(--mango-soft);color:var(--mango-ink);padding:0 2px;border-radius:3px}
+.tip-warn b{color:var(--warn)}
 .pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pc-grid label{display:grid;gap:4px;align-content:end}
 .pc-grid .hil{font-weight:400;font-size:.8rem}.pc-grid .hil::before{content:none}
 .pc-out{display:grid;gap:6px;background:var(--surface);border:1.5px solid var(--teal);border-radius:12px;padding:12px}
@@ -654,7 +658,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>4 Tell and sell</td><td>S26–S33</td><td>Five-part post checklist; few-shot card with two participants' products (with and without examples, then a MassKara story in #context); Task 3; three checks; halfway challenge</td><td>G3</td></tr>
         <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
         <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes)</td><td>B1, B2</td></tr>
-        <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; HANDA link</td><td>K1</td></tr>
+        <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link</td><td>K1</td></tr>
         <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal)</td><td>S1</td></tr>
         <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; my answers to the three questions</td><td>K2</td></tr>
       </tbody>
@@ -1105,6 +1109,18 @@ const priceCard=`<div class="reflect" id="pricecalc"><h4>Price it right <span cl
   <div class="btnrow"><button type="button" class="copy" data-copy="cp-PR">Copy prompt</button><button type="button" class="copy" data-copy="cp-PRh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
   <p class="tip"><b>Three price rules</b><span>1. Never sell below cost, even on sale. 2. Round to an easy price, such as ₱25 or ₱50. 3. To sell more, make a bundle (3 for ₱__) instead of cutting the price of one.</span></p>
   <p class="check">AI drafts, you decide. Check the maths yourself.</p></div>`;
+// Ready messages (Part 6): disaster protection was the other lowest pre-survey confidence
+Object.assign(TP,{"M1": "⚠️ Warning for [place]: [typhoon / ashfall]. We are open until ___ today. Order your [product] now and pick it up before ___, or ask about delivery. Please follow PAGASA and PHIVOLCS advisories. Stay safe! 🙏", "M1h": "⚠️ May warning parte sa [typhoon / ashfall] diri sa [place]. Bukas kami tubtob ___ subong nga adlaw. Mag-order na sang [product] kag kuhaa antes ___, ukon pamangkot parte sa delivery. Palihog sundon ang advisory sang PAGASA kag PHIVOLCS. Mag-amlig kamo! 🙏", "M2": "We are closed today because of the [typhoon / ashfall]. Your safety comes first, and ours too. Orders already paid will be ready on ___. We will post here when we open again. Stay safe!", "M2h": "Sirado kami subong nga adlaw tungod sang [typhoon / ashfall]. Una ang inyo kaluwasan, kag amon man. Ang mga order nga bayad na, handa sa ___. Mag-post kami diri kon bukas na liwat kami. Mag-amlig kamo!", "M3": "Hello! Because of the [typhoon / ashfall], your order of [product] will be late. New date: ___. You can wait, change to pick-up, or get your money back. Which do you prefer? Thank you for understanding.", "M3h": "Maayong adlaw! Tungod sang [typhoon / ashfall], maulihi ang imo order nga [product]. Bag-o nga petsa: ___. Pwede ka maghulat, mag-pick-up na lang, ukon bawion ang imo kwarta. Ano ang gusto mo? Salamat sa pag-intiende.", "M4": "We are open again! 🙌 Thank you for waiting. Our [product] is available from ___ today. Pick-up at ___ or delivery to ___. If your area was hit, message us and we will find a way. Padayon, [place]!", "M4h": "Bukas na liwat kami! 🙌 Salamat sa paghulat. May [product] na kami halin ___ subong. Pick-up sa ___ ukon delivery sa ___. Kon naigo ang inyo lugar, mag-message lang kamo kag pangitaan namon sang paagi. Padayon, [place]!"});
+const MSGS=[["M1","1. Before: when a warning comes","Antes: kon may warning"],["M2","2. During: closed today","Samtang: sirado subong"],["M3","3. An order will be late (send it in Messenger)","Maulihi ang order (ipadala sa Messenger)"],["M4","4. After: open again","Pagkatapos: bukas na liwat"]];
+const readyMsgs=`<div class="reflect" id="readymsgs"><h4>Ready messages: write them before the storm <span class="tag">10 min</span></h4>
+  <span class="hil">Andam nga mensahe: isulat antes mag-abot ang kalamidad</span>
+  <p>During a typhoon or ashfall, power and signal can drop, and you are busy keeping your family safe. Get these 4 messages ready <b>now</b>, in English and Hiligaynon. They take your product, place and hazard from "My details" and the hazard box above. Fill each ___, then save them.</p>
+  ${MSGS.map(([k,when,hil])=>`<div class="msgcard"><b>${when}</b><span class="hil">${hil}</span>
+    <div class="msg" id="cp-${k}" data-tp="${k}"></div>
+    <div class="msg msg-hil" id="cp-${k}h" data-tp="${k}h"></div>
+    <div class="btnrow"><button type="button" class="copy" data-copy="cp-${k}">Copy English</button><button type="button" class="copy" data-copy="cp-${k}h">Copy Hiligaynon</button></div></div>`).join("")}
+  <p class="tip"><b>Save them now</b><span>1. Facebook Page inbox: save them as saved replies. 2. Facebook: save them as draft posts. 3. Your phone's notes app, for when the data is slow. 4. Keep your customer list somewhere other than this phone, too.</span></p>
+  <p class="tip tip-warn"><b>Fair prices in a calamity</b><span>Do not raise prices when people are in need. In an area under a state of calamity, the prices of basic necessities such as rice are automatically frozen for 60 days under the Price Act (RA 7581). Follow DTI advisories.</span><span class="hil">Indi pagtaasan ang presyo sa tion sang kalamidad.</span></p></div>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1148,6 +1164,7 @@ const PARTS=[
   ${chips("moves",["Customer list backed up outside my phone","Open / closed messages ready","Delivery or pre-orders","Selling what people need now","Partner sellers for delivery"])}
   <div class="reflect">${inp("c-haz","Which hazard","ashfall")}</div>
   ${task(5,'My "still open" message plan')}
+  ${readyMsgs}
   <p class="check">Follow official PAGASA and PHIVOLCS advisories first. HANDA, the DOST–PHIVOLCS preparedness platform, turns an official advisory into actions: <a href="https://handa.georisk.gov.ph" target="_blank" rel="noopener">handa.georisk.gov.ph</a></p>`,"A ready message is faster than a worried one."),
  part(7,"Use AI safely",`
   <p>AI can invent prices, laws, numbers and facts, and sound sure. Always check numbers, names, dates, health claims and legal rules.</p>
