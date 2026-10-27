@@ -171,6 +171,11 @@ form.quiz .dots-legend{max-width:none}
 .wb-en{display:block;font-size:.88rem;color:var(--muted);font-style:italic;margin-top:2px}
 .wish-send{justify-self:start;text-decoration:none;display:inline-block}
 .wb-list{display:grid}.wish-row{display:grid;gap:4px;padding:10px 0;border-bottom:1px dotted var(--line)}
+.pc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.pc-grid label{display:grid;gap:4px;align-content:end}
+.pc-grid .hil{font-weight:400;font-size:.8rem}.pc-grid .hil::before{content:none}
+.pc-out{display:grid;gap:6px;background:var(--surface);border:1.5px solid var(--teal);border-radius:12px;padding:12px}
+.pc-row{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-variant-numeric:tabular-nums}.pc-row b{white-space:nowrap}
+.pc-main{font-size:1.15rem;color:var(--teal)}.pc-warn{color:var(--warn);font-weight:700}.pc-ok{font-weight:700}
 .wb-re{display:grid;gap:2px;margin:4px 0 0;padding:8px 10px;border-left:3px solid var(--teal);border-radius:8px;background:var(--bg);font-size:.95rem}
 .wb-try{margin-top:4px}.wb-try .prompt{margin-top:8px}.wb-try .btnrow{margin-top:8px}.wish-row:last-child{border-bottom:0}
 .wb-tag{justify-self:start;font-size:.78rem;font-weight:700;letter-spacing:.02em;padding:2px 9px;border-radius:999px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
@@ -648,7 +653,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>3 Choose and stand out</td><td>S19–S25</td><td>Pick what makes me different; promise builder; Task 2</td><td>G2</td></tr>
         <tr><td>4 Tell and sell</td><td>S26–S33</td><td>Five-part post checklist; few-shot card with two participants' products (with and without examples, then a MassKara story in #context); Task 3; three checks; halfway challenge</td><td>G3</td></tr>
         <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
-        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4</td><td>B1, B2</td></tr>
+        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes)</td><td>B1, B2</td></tr>
         <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; HANDA link</td><td>K1</td></tr>
         <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal)</td><td>S1</td></tr>
         <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; my answers to the three questions</td><td>K2</td></tr>
@@ -998,8 +1003,8 @@ function cfill(t){
   const esc=x=>x.replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
   return esc(t).replace(/^(#.*)$/gm,'<span class="ph">$1</span>').replace(/\[([^\]\n]+)\]/g,(m,k)=>`<mark>${esc(map[k]?map[k]:"["+k+"]")}</mark>`);
 }
-const task=(n,title,extra="")=>`<div class="reflect"><h4>AI Task ${n} · ${title} <span class="tag">10–15 min</span></h4>${extra}<div class="prompt" id="cp-T${n}" data-tp="T${n}"></div>
-  <div class="btnrow"><button type="button" class="copy" data-copy="cp-T${n}">Copy prompt</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
+const task=(n,title,extra="")=>`<div class="reflect"><h4>AI Task ${n} · ${title} <span class="tag">10–15 min</span></h4>${extra}<div class="prompt" id="cp-T${n}" data-tp="T${n}"></div>${TP["T"+n+"h"]?`<div id="cp-T${n}h" data-tp="T${n}h" hidden></div>`:""}
+  <div class="btnrow"><button type="button" class="copy" data-copy="cp-T${n}">Copy prompt</button>${TP["T"+n+"h"]?`<button type="button" class="copy" data-copy="cp-T${n}h">Copy: answer in Hiligaynon</button>`:""}<a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
   <p class="check">AI drafts, you decide.</p></div>`;
 const chips=(key,items,multi=true)=>`<div class="chips" data-key="${key}" data-multi="${multi}">${items.map(x=>`<button type="button" class="chip-btn" data-v="${x}">${x}</button>`).join("")}</div>`;
 const inp=(id,label,ph)=>`<label for="${id}">${label}</label><input type="text" id="${id}" data-csave placeholder="e.g. ${ph}">`;
@@ -1075,6 +1080,7 @@ const wishBoard=`<article class="lpart" id="wishboard"><span class="lnum">Day 2<
 let wCat=null;
 // same prompt, but AI answers in Hiligaynon (English in #style becomes Hiligaynon, or a line is added)
 const hilTp=t=>/#style\n[^\n]*English/.test(t)?t.replace(/(#style\n[^\n]*?)English/,"$1Hiligaynon"):/#style\n/.test(t)?t.replace(/(#style\n[^\n]*)/,"$1 Answer in simple Hiligaynon."):t+"\n#style\nAnswer in simple Hiligaynon.";
+Object.keys(TP).forEach(k=>{if(/^T\d$/.test(k)&&!/Hiligaynon/.test(TP[k]))TP[k+"h"]=hilTp(TP[k])});
 function drawWishes(){
   const el=document.getElementById("wb-body"); if(!el)return;
   if(!WISHES.length){el.innerHTML=`<p>The wishes from the Wish Round appear here on Day 2 morning, without names. Each wish shows the part of the course or the Dojo step that answers it.</p>${howRead}${wishSend()}`;return;}
@@ -1087,6 +1093,18 @@ function drawWishes(){
    <p class="check">From the Wish Round, no names. Wishes written in Hiligaynon or Filipino are shown as written, with an English line below. Missing yours? ${WISH_FORM?`<a href="${WISH_FORM}" target="_blank" rel="noopener">Send it here</a>.`:"Tell your facilitator."}</p>`;
 }
 document.addEventListener("click",e=>{const b=e.target.closest(".wb-btn");if(!b)return;wCat=(wCat===b.dataset.wcat)?null:b.dataset.wcat;drawWishes();});
+// Price it right (Part 5): pricing was the top wish and the lowest pre-survey confidence
+const PRICE_F=[["pc-ing","Ingredients or materials (₱)","Mga sangkap","500"],["pc-pkg","Packaging and labels (₱)","Pakete kag etiketa","80"],["pc-fuel","Gas, electricity, water (₱)","Gas, kuryente, tubig","60"],["pc-trans","Transport (₱)","Pliti","40"],["pc-hrs","My hours of work","Oras sang akon obra","4"],["pc-rate","Value of 1 hour of my time (₱)","Bili sang isa ka oras ko","60"],["pc-n","Packs from this batch","Pila ka pakete","40"],["pc-margin","Profit I want (%)","Ganansya nga gusto ko","30"],["pc-now","My price now (₱, optional)","Presyo ko subong","25"],["pc-near","Similar products nearby (₱, optional)","Presyo sang kapareho","25"]];
+const priceCard=`<div class="reflect" id="pricecalc"><h4>Price it right <span class="tag">15 min</span></h4>
+  <span class="hil">Husto nga presyo: pila gid ang gastos sang isa ka pakete?</span>
+  <p>From the Wish Board: <i>"Please help me set a price."</i> A good price covers <b>all</b> your costs, even gas and your own time, and leaves a profit. Type the costs of <b>one batch</b>. The maths happens on your phone; nothing is sent.</p>
+  <div class="pc-grid">${PRICE_F.map(([id,en,hil,ph])=>`<label for="${id}">${en}<span class="hil">${hil}</span><input type="text" inputmode="decimal" id="${id}" data-csave placeholder="e.g. ${ph}"></label>`).join("")}</div>
+  <div class="pc-out" id="pc-out" aria-live="polite"></div>
+  <h4>Ask AI for price ideas</h4>
+  <div class="prompt" id="cp-PR"></div><div id="cp-PRh" hidden></div>
+  <div class="btnrow"><button type="button" class="copy" data-copy="cp-PR">Copy prompt</button><button type="button" class="copy" data-copy="cp-PRh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
+  <p class="tip"><b>Three price rules</b><span>1. Never sell below cost, even on sale. 2. Round to an easy price, such as ₱25 or ₱50. 3. To sell more, make a bundle (3 for ₱__) instead of cutting the price of one.</span></p>
+  <p class="check">AI drafts, you decide. Check the maths yourself.</p></div>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1123,7 +1141,8 @@ const PARTS=[
  wishBoard,
  part(5,"Get paid and keep records",`
   ${list([["Make paying easy","GCash or Maya QR at your table and in every post; confirm by screenshot; give a simple receipt"],["Separate business money from house money","Two wallets, e.g. two e-wallets or one e-wallet plus a cash box. Pay yourself a fixed amount."],["Keep a simple sales record","Date · item · quantity · price · paid by. Five minutes a day."],["Your records are your collateral","Regular e-wallet payments and records show lenders your business is real, even without a land title. Stay away from five-six lenders."]])}
-  ${task(4,"From notebook to table","<p class='check'>Attach a photo of one notebook page, or use the sample rows. <mark class='alert'>Cover customer names.</mark> Check every number.</p>")}`,"Good records open doors to better loans."),
+  ${task(4,"From notebook to table","<p class='check'>Attach a photo of one notebook page, or use the sample rows. <mark class='alert'>Cover customer names.</mark> Check every number.</p>")}
+  ${priceCard}`,"Good records open doors to better loans."),
  part(6,"Keep selling when disaster hits",`
   <p>Disasters hit marketing too: customers stay home, roads close, power and signal drop, stock is damaged. Tick the moves you already have:</p>
   ${chips("moves",["Customer list backed up outside my phone","Open / closed messages ready","Delivery or pre-orders","Selling what people need now","Partner sellers for delivery"])}
@@ -1157,6 +1176,35 @@ function drawCourse(){
   document.querySelectorAll(".chips").forEach(g=>{const sel=C.pick[g.dataset.key]||[];g.querySelectorAll(".chip-btn").forEach(b=>b.setAttribute("aria-pressed",sel.includes(b.dataset.v)))});
   const f=C.f,v=k=>(f[k]||"").trim()||"…";
   $("#promise").innerHTML=`<b>My promise</b><span>For ${v("p-cust")} who want ${v("p-need")}, my ${(f["c-product"]||quizProduct()||"product")} gives ${v("p-ben")}, unlike ${v("p-oth")}, because ${v("p-why")}.</span>`;
+  drawPrice();
+}
+function drawPrice(){
+  const out=document.getElementById("pc-out"); if(!out)return;
+  const f=C.f, n=k=>{const v=parseFloat(String(f[k]||"").replace(/[₱,\s%]/g,""));return isFinite(v)&&v>=0?v:null};
+  const peso=v=>"₱"+v.toLocaleString("en-PH",{minimumFractionDigits:v<100&&v%1?2:0,maximumFractionDigits:2});
+  const cash=["pc-ing","pc-pkg","pc-fuel","pc-trans"].reduce((t,k)=>t+(n(k)||0),0), hrs=n("pc-hrs")||0, rate=n("pc-rate")||0, time=hrs*rate;
+  const packs=n("pc-n"), m=n("pc-margin")??30, now=n("pc-now"), near=n("pc-near");
+  let h;
+  if(!packs||!(cash+time)) h=`<p class="check">Type at least one cost and the number of packs. Your result appears here.</p>`;
+  else{
+    const c1=cash/packs, c2=(cash+time)/packs, raw=c2*(1+m/100), sug=raw<20?Math.ceil(raw):Math.ceil(raw/5)*5;
+    h=`<div class="pc-row"><span>Cash cost per pack</span><b>${peso(c1)}</b></div>
+     <div class="pc-row"><span>Full cost per pack, with your time</span><b>${peso(c2)}</b></div>
+     <div class="pc-row pc-main"><span>Price with ${m}% profit, rounded</span><b>${peso(sug)}</b></div>`;
+    if(now){
+      const pr=now-c2;
+      h+=now<c1?`<p class="pc-warn">At ${peso(now)} you lose money on every pack: the price does not even cover your cash costs.</p>`
+        :pr<0?`<p class="pc-warn">At ${peso(now)} you cover your cash costs but not your time${hrs?`: you earn about ${peso(Math.round((now*packs-cash)/hrs))} per hour`:""}.</p>`
+        :`<p class="pc-ok">At ${peso(now)} you keep ${peso(Math.round(pr*100)/100)} profit per pack (${peso(Math.round(pr*packs))} per batch) after paying for your time.</p>`;
+      h+=`<div class="pc-row"><span>Packs to sell to get your cash back</span><b>${Math.ceil(cash/now)} of ${packs}</b></div>`;
+    }
+    if(near) h+=`<p class="check">${sug>near?`This price is above similar products (${peso(near)}). Show your value (Part 3), lower a cost, or make the pack smaller. Do not just cut the price.`:`This price is at or below similar products (${peso(near)}). Good, as long as it covers your full cost.`}</p>`;
+  }
+  out.innerHTML=h;
+  const v=(k,pre="")=>n(k)===null?pre+"___":pre+n(k);
+  const t=`#role\nYou are a pricing helper for small sellers in Negros Occidental.\n#context\nI sell [product] in [place]. One batch makes ${v("pc-n")} packs. Costs for one batch: materials ${v("pc-ing","₱")}, packaging ${v("pc-pkg","₱")}, gas, electricity and water ${v("pc-fuel","₱")}, transport ${v("pc-trans","₱")}, my time ${v("pc-hrs")} hours at ${v("pc-rate","₱")} per hour. My price now: ${v("pc-now","₱")}. Similar products nearby: ${v("pc-near","₱")}.\n#task\n1. Check my cost per pack. 2. Suggest 3 prices (low, middle, high) with the profit per pack for each. 3. Give 3 ways to lower my cost or show more value without cutting my price.\n#style\nSimple English. Show the maths step by step.\n#rules\nUse only my numbers. Do not invent prices. If a number is missing, write ___.`;
+  document.getElementById("cp-PR").innerHTML=cfill(t);
+  document.getElementById("cp-PRh").innerHTML=cfill(hilTp(t));
 }
 document.querySelectorAll("[data-csave]").forEach(el=>{el.value=C.f[el.id]||"";el.addEventListener("input",()=>{C.f[el.id]=el.value;cstore.set(C);drawCourse()})});
 $("#course").addEventListener("click",e=>{const b=e.target.closest(".chip-btn");if(!b)return;const g=b.parentElement,k=g.dataset.key,multi=g.dataset.multi==="true";
