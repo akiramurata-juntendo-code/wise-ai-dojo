@@ -316,6 +316,46 @@ tr:last-child td{border-bottom:0}
 .prog{display:grid;gap:2px;line-height:1.35}.prog-name{font-weight:700;color:var(--teal);font-size:.92rem}.prog-sub{font-size:.85rem;color:var(--ink)}.prog-where{font-size:.8rem;color:var(--muted)}
 footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
 @media (prefers-reduced-motion: no-preference){.step{transition:opacity .2s}}
+/* phone navigation (28 Oct): sticky tabs, jump grid, floating contents / top, sheet */
+.tabs{position:sticky;top:0;z-index:30;background:var(--bg)}
+.tab .t-short{display:none}
+section.view [id],#course-parts>*{scroll-margin-top:72px}
+.jump{display:grid;gap:10px}
+.jump h3{font-size:1rem}
+.jump-today{display:flex;justify-content:space-between;align-items:center;gap:10px;background:var(--mango);color:#2A1A00;font:800 1rem/1.3 var(--body);border:0;border-radius:12px;padding:12px 16px;min-height:52px;cursor:pointer;text-align:left;width:100%}
+.jump-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.jump-grid button{display:flex;gap:8px;align-items:center;text-align:left;font:700 .88rem/1.25 var(--body);color:var(--ink);background:var(--surface);border:1.5px solid var(--line);border-radius:10px;padding:8px 10px;min-height:52px;cursor:pointer}
+.jump-grid button i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:800 .8rem var(--display);font-style:normal;background:var(--teal);color:var(--surface)}
+.jump-grid button.is-today{border-color:var(--mango);box-shadow:0 0 0 2px var(--mango) inset}
+.fab{position:fixed;right:max(12px,env(safe-area-inset-right,0px));bottom:max(14px,env(safe-area-inset-bottom,0px));z-index:40;display:flex;gap:8px}
+.fab button{font:700 .92rem var(--body);border:1.5px solid var(--teal);border-radius:999px;padding:8px 14px;min-height:46px;min-width:46px;cursor:pointer;background:var(--teal);color:var(--surface);box-shadow:0 4px 14px rgba(0,0,0,.22)}
+.fab #fab-top{background:var(--surface);color:var(--teal)}
+.sheet{position:fixed;inset:0;z-index:60;background:rgba(14,26,27,.55);display:flex;align-items:flex-end;justify-content:center}
+.sheet-box{background:var(--surface);color:var(--ink);width:100%;max-width:760px;max-height:82vh;overflow:auto;border-radius:18px 18px 0 0;padding:0 16px max(16px,env(safe-area-inset-bottom,0px))}
+.sheet-head{display:flex;justify-content:space-between;align-items:center;gap:10px;position:sticky;top:0;background:var(--surface);padding:14px 0 10px;border-bottom:1px solid var(--line)}
+.sheet-head b{font:800 1.15rem var(--display)}
+#toc-list{display:grid;padding-top:6px}
+.toc-item{display:flex;gap:8px;align-items:center;justify-content:flex-start;text-align:left;font:700 1rem/1.3 var(--body);color:var(--ink);background:none;border:0;border-bottom:1px solid var(--line);padding:12px 4px;min-height:48px;cursor:pointer;width:100%}
+.toc-item.toc-sub{font-weight:400;font-size:.92rem;color:var(--muted);padding-left:22px;min-height:44px}
+.toc-item.toc-sub::before{content:"–";margin-right:2px;color:var(--teal)}
+.toc-item .tag{flex:none;font-size:.75rem;margin-left:auto}
+body{padding-bottom:96px}
+@media (max-width:600px){
+ header{padding-block:14px 0;gap:6px}
+ .stairs{height:18px;max-width:120px}
+ h1{font-size:1.9rem}
+ html[data-tab]:not([data-tab="dojo"]) header .lede{display:none}
+ .tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:0;overflow:visible;margin:10px -16px 16px;padding-inline:6px}
+ .tab{white-space:normal;padding:10px 1px 8px;font-size:.78rem;line-height:1.2;text-align:center;min-height:48px}
+ .tab .t-full{display:none}.tab .t-short{display:inline}
+ .lpart{padding:14px 12px}
+ .lpart .reflect{padding:12px 10px}
+ .circles li,.rs li{padding:8px 10px;column-gap:10px}
+ .reflect .circles li{background:transparent;padding:6px 0}
+ .msgcard{padding:10px}
+ .btnrow:has(.copy){display:grid;grid-template-columns:1fr 1fr}
+ .btnrow:has(.copy) .copy,.btnrow:has(.copy) .open{justify-self:stretch;justify-content:center;text-align:center;padding-inline:8px}
+}
 </style>
 </head>
 <body>
@@ -344,12 +384,13 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
   </div>
 </div>
 
+<div id="tabs-top"></div>
 <nav class="tabs" role="tablist">
   <button class="tab" role="tab" id="tab-dojo" aria-selected="true" aria-controls="dojo">My Dojo</button>
   <button class="tab" role="tab" id="tab-lesson" aria-selected="false" aria-controls="lesson">Lead your day</button>
   <button class="tab" role="tab" id="tab-course" aria-selected="false" aria-controls="course">Sell smarter</button>
   <button class="tab" role="tab" id="tab-handouts" aria-selected="false" aria-controls="handouts">Handouts</button>
-  <button class="tab" role="tab" id="tab-guide" aria-selected="false" aria-controls="guide">Facilitator guide</button>
+  <button class="tab" role="tab" id="tab-guide" aria-selected="false" aria-controls="guide"><span class="t-full">Facilitator guide</span><span class="t-short">Guide</span></button>
 </nav>
 
 <section class="view" id="dojo" role="tabpanel" aria-labelledby="tab-dojo">
@@ -573,7 +614,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
     <p class="lede">Marketing for Pinaypreneurs in 8 parts and 6 AI tasks. Fill in your details once; every AI task prompt uses them.</p>
     <a class="check" href="#handouts" data-goto="handouts">The slides are in Handouts (PDF).</a>
   </div>
-  <div class="reflect">
+  <div class="reflect" id="mydetails">
     <h4>My details (used in every prompt)</h4>
     <label for="c-product">What I sell</label><input type="text" id="c-product" data-csave placeholder="e.g. kakanin">
     <label for="c-place">Where (barangay or city)</label><input type="text" id="c-place" data-csave placeholder="e.g. Kabankalan City">
@@ -706,6 +747,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>11:45–12:00</td><td>Save PDF, send, survey</td><td>Save my 30-day plan as PDF; Send my answers (consent first). Show the after-workshop survey button and say when to answer it (the PRE form said "on the last day", 29 Oct). Read the take-home list.</td><td>–</td></tr>
       </tbody>
     </table></div>
+    <p class="tip"><b>Finding a card fast</b><span>Sell smarter opens with "Go to a part" and, on 28 Oct, a "Today starts here" button. Anywhere on the page, the <b>☰ Contents</b> button at the bottom right lists every part and card; <b>↑</b> goes back to the top of the tab. Each tab remembers where you were.</span></p>
     <p class="tip"><b>Take home tonight</b><span>Voice tries 2 and 3 · Lista table and reminders · business profile for the Negosyo Center (Help and capital) · Ready messages 3 and 4 · SSS and PhilHealth plan (Protect yourself) · Spot the mistake · the 3-month selling plan · new: Sell beyond Kabankalan (Part 4), Buy together (Part 5), Keep your phone working (Part 6). All prompts have a Hiligaynon button.</span></p>
   </div>
 
@@ -789,6 +831,8 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
     <div class="actions"><button type="button" class="btn btn-primary" id="clear-yes">Yes, clear all</button><button type="button" class="btn btn-ghost" id="clear-no">Cancel</button></div></div>
   <p class="check" id="clear-done" hidden><b>Cleared.</b> This phone is ready for the next person.</p>
 </div>
+<div class="fab" id="fab" hidden><button type="button" id="fab-toc" aria-haspopup="dialog">☰ Contents</button><button type="button" id="fab-top" aria-label="Back to the top of this tab">↑</button></div>
+<div class="sheet" id="toc-sheet" hidden role="dialog" aria-modal="true" aria-labelledby="toc-title"><div class="sheet-box"><div class="sheet-head"><b id="toc-title">Contents</b><button type="button" class="btn btn-ghost" id="toc-close">Close</button></div><div id="toc-list"></div></div></div>
 <footer>WISE Program · UP ISSI and Awesome AI Asia · Dr Akira Murata. Example participant "Ate Nena" is fictional.</footer>
 </div>
 
@@ -1766,9 +1810,62 @@ document.addEventListener("change",e=>{
   e.target.closest(".step").classList.toggle("done",e.target.checked);
 });
 
-function show(t){["dojo","lesson","course","handouts","guide"].forEach(v=>{$("#"+v).hidden=v!==t;$("#tab-"+v).setAttribute("aria-selected",v===t)})}
+const tabPos={};let curTab="dojo";
+const tabsTop=()=>document.getElementById("tabs-top").getBoundingClientRect().top+scrollY;
+function show(t){
+  if(t!==curTab)tabPos[curTab]=scrollY;
+  ["dojo","lesson","course","handouts","guide"].forEach(v=>{$("#"+v).hidden=v!==t;$("#tab-"+v).setAttribute("aria-selected",v===t)});
+  document.documentElement.dataset.tab=t;
+  if(t!==curTab)scrollTo(0,tabPos[t]!=null?tabPos[t]:Math.min(scrollY,tabsTop()));
+  curTab=t;fabUpdate();
+}
 ["dojo","lesson","course","handouts","guide"].forEach(v=>$("#tab-"+v).addEventListener("click",()=>show(v)));
 document.addEventListener("click",e=>{const g=e.target.closest("[data-goto]");if(g){e.preventDefault();show(g.dataset.goto);const t=g.dataset.part&&document.getElementById(g.dataset.part);if(t)t.scrollIntoView({block:"start"});else window.scrollTo(0,0)}});
+// ---- Phone navigation (28 Oct): jump grid, Today button, floating Contents / Top, contents sheet ----
+const PH_TODAY={"2026-10-28":"wishboard"};
+const todayId=(()=>{try{return PH_TODAY[new Date().toLocaleDateString("en-CA",{timeZone:"Asia/Manila"})]||null}catch(e){return null}})();
+const plainText=el=>{if(!el)return"";const c=el.cloneNode(true);c.querySelectorAll(".tag,.hil").forEach(x=>x.remove());return c.textContent.replace(/\s+/g," ").trim()};
+const JUMP_ICON={wishboard:"★",voice:"🎤",sellyear:"📅"};
+const partNo=a=>(a.querySelector(".lnum")?.textContent.match(/^Part (\d+)/)||[])[1];
+function jumpTo(id){const el=document.getElementById(id);if(!el)return;const v=el.closest("section.view");if(v&&v.hidden)show(v.id);el.scrollIntoView({block:"start"})}
+(function(){
+  const arts=[...document.querySelectorAll("#course-parts > article[id]")];
+  const t=todayId&&document.getElementById(todayId);
+  const btn=a=>`<button type="button" data-jump="${a.id}"${a.id===todayId?' class="is-today"':""}><i>${partNo(a)||JUMP_ICON[a.id]||"•"}</i><span>${plainText(a.querySelector("h3"))}</span></button>`;
+  document.getElementById("mydetails").insertAdjacentHTML("beforebegin",`<nav class="jump" aria-label="Go to a part"><h3>Go to a part</h3>${t?`<button type="button" class="jump-today" data-jump="${todayId}"><span>Today starts here: ${plainText(t.querySelector("h3"))}</span><span aria-hidden="true">→</span></button>`:""}<div class="jump-grid">${arts.map(btn).join("")}</div></nav>`);
+})();
+function tocEntries(view){
+  const out=[];
+  if(view.id==="course"){
+    out.push(["mydetails","My details",0]);
+    view.querySelectorAll("#course-parts > article[id]").forEach(a=>{
+      const n=partNo(a);out.push([a.id,(n?"Part "+n+" · ":"")+plainText(a.querySelector("h3")),0]);
+      a.querySelectorAll(":scope > .reflect > h4, :scope > h4").forEach((h,j)=>{const box=h.parentElement===a?h:h.parentElement;if(!box.id)box.id=a.id+"-s"+j;out.push([box.id,plainText(h),1])});
+    });
+  }else view.querySelectorAll("h3").forEach((h,j)=>{if(!h.offsetParent)return;const box=h.closest("article")||h;if(!box.id)box.id=view.id+"-h"+j;if(!out.some(e=>e[0]===box.id))out.push([box.id,plainText(h),0])});
+  return out;
+}
+function openToc(){
+  const v=document.querySelector("section.view:not([hidden])");if(!v)return;
+  document.getElementById("toc-list").innerHTML=tocEntries(v).map(([id,t,sub])=>`<button type="button" class="toc-item${sub?" toc-sub":""}" data-jump="${id}"><span>${t}</span>${id===todayId?'<span class="tag goal">Today</span>':""}</button>`).join("");
+  document.getElementById("toc-sheet").hidden=false;document.getElementById("toc-close").focus();
+}
+function closeToc(){const s=document.getElementById("toc-sheet");if(!s.hidden){s.hidden=true;document.getElementById("fab-toc").focus({preventScroll:true})}}
+let typing=false;
+function fabUpdate(){
+  const f=document.getElementById("fab");if(!f)return;
+  f.hidden=typing||scrollY<700;document.getElementById("fab-toc").hidden=curTab==="handouts";
+}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-jump]");if(!b)return;e.preventDefault();closeToc();jumpTo(b.dataset.jump)});
+document.getElementById("fab-toc").addEventListener("click",openToc);
+document.getElementById("fab-top").addEventListener("click",()=>scrollTo(0,curTab==="dojo"?0:tabsTop()));
+document.getElementById("toc-close").addEventListener("click",closeToc);
+document.getElementById("toc-sheet").addEventListener("click",e=>{if(e.target.id==="toc-sheet")closeToc()});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeToc()});
+document.addEventListener("focusin",e=>{if(e.target.matches("input[type=text],input:not([type]),textarea")){typing=true;fabUpdate()}});
+document.addEventListener("focusout",()=>{typing=false;setTimeout(fabUpdate,60)});
+addEventListener("scroll",fabUpdate,{passive:true});
+document.documentElement.dataset.tab="dojo";
 if(location.hash==="#guide")show("guide");if(location.hash==="#lesson")show("lesson");if(location.hash==="#course")show("course");if(location.hash==="#handouts")show("handouts");
 
 const saved=(store.get()||{}).answers;
