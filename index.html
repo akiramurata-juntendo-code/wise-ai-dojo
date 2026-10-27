@@ -676,7 +676,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>4 Tell and sell</td><td>S26–S33</td><td>Five-part post checklist; few-shot card with two participants' products (with and without examples, then a MassKara story in #context); Task 3; three checks; halfway challenge</td><td>G3</td></tr>
         <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
         <tr><td>Day 2: Talk to AI (voice)</td><td>–</td><td>Warm-up after the Wish Board, 15 min. Keyboard microphone (voice typing) and voice chat; 3 tries: speak your story → post, say your sales → table, practise a hard customer. Hiligaynon voice typing may not work: speak Filipino or English and ask for Hiligaynon. Never say MPIN, OTP or customer details.</td><td>W1–W2, B1</td></tr>
-        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes); "Help and capital near you" (Negosyo Center, BMBE, DOST SETUP, SB Corp P3 vs 5-6, DSWD/DOLE) with a business-profile prompt</td><td>B1, B2</td></tr>
+        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes); "Lista: selling on credit" (6 rules, codes not names, reminder and lista-table prompts); "Help and capital near you" (Negosyo Center, BMBE, DOST SETUP, SB Corp P3 vs 5-6, DSWD/DOLE) with a business-profile prompt</td><td>B1, B2</td></tr>
         <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link</td><td>K1</td></tr>
         <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326</td><td>S1</td></tr>
         <tr><td>Plan ahead: the selling year</td><td>–</td><td>12 month tiles for southern Negros (Sinulog de Kabankalan, tiempo muerto, Charter Day, milling season, Undas, Christmas, typhoon season); this month and the next two are marked; 3-month post and offer prompt. Feeds the 30-day plan.</td><td>G1–G3</td></tr>
@@ -1238,6 +1238,27 @@ const calCard=`<article class="lpart" id="sellyear"><span class="lnum">Plan ahea
   <div class="btnrow"><button type="button" class="copy" data-copy="cp-CAL">Copy prompt</button><button type="button" class="copy" data-copy="cp-CALh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div>
   <p class="check">Dates marked "about" move a little each year. Check this year's dates with your barangay, parish or the city.</p>
   <p class="key">Sell before the season, not during it.</p></article>`;
+// Lista (selling on credit to suki), Part 5
+TP.LR="#role\nYou help a small seller in [place] collect money kindly and keep customers as friends.\n#context\nA regular customer (Customer A) owes me ₱___ for [product] since ___ (date). We agreed on payday, the ___ (15th or 30th).\n#task\nWrite 3 short Messenger reminders:\n1. The day before payday.\n2. One week late.\n3. Two weeks late, offering to pay in parts by GCash, Maya or cash.\n#style\nSimple English. Warm, polite and short.\n#rules\nDo not shame the customer. Do not mention other people or what they owe.";TP.LRh=hilTp(TP.LR);
+TP.LT="#role\nYou are a careful bookkeeper for a small store in [place].\n#context\nThis is my lista. I use codes, not names:\n___ (for example: A ₱120 3 Oct; B ₱75 5 Oct; A ₱60 10 Oct; C ₱200 12 Oct, paid ₱100 on 15 Oct)\nToday is [today].\n#task\n1. Make a table: code, what is owed, date, days unpaid.\n2. Add the total I am owed.\n3. List who to remind first.\n#style\nSimple English. A short table.";TP.LTh=hilTp(TP.LT);
+const LISTA=[["Set a limit","Lista only for regular customers, up to an amount you can afford to wait for, for example ₱300 each. Also set a total for everyone together. When you reach it, pause new lista.","Magbutang sang limite."],
+ ["Write it the same day","In a separate lista notebook: date, customer, item, amount, date paid. Ask the customer to initial it.","Isulat ang utang sa adlaw mismo."],
+ ["Agree on the pay date","Payday (15th or 30th), or when the cane or harvest money comes. Write the date down together.","Magkasugot kon san-o magbayad."],
+ ["Remind kindly, early","A friendly message the day before payday works better than a hard one after.","Pahanumdom sing mainayon."],
+ ["Make paying easy","Your GCash or Maya QR, cash, or small parts. Check the money in your own app.","Puwede magbayad sing tinagdiutay."],
+ ["Old lista first","No new lista until the old one is paid, or at least part of it.","Bayaran anay ang daan nga utang."]];
+const listaCard=`<div class="reflect" id="lista"><h4>Lista: selling on credit <span class="tag">10 min</span></h4>
+  <span class="hil">Utang sa tindahan: indi madula ang kwarta ukon ang abyan</span>
+  <p>Many suki buy now and pay on payday. Lista keeps customers close, but unpaid lista eats your capital. Six rules:</p>
+  ${list(LISTA.map(([t,b,h])=>[t,`${b} <span class="hil">${h}</span>`]))}
+  <p class="tip tip-warn"><b>Codes, not names</b><span>When you use AI, write <b>A, B, C</b> instead of customers' names and leave out their phone numbers. <mark class="alert">Keep the real names only in your own notebook.</mark></span><span class="hil">Gamita ang A, B, C, indi ang ngalan sang customer.</span></p>
+  <div class="msgcard"><b>1. Kind payday reminders</b><span class="hil">Malulo-on nga pahanumdom</span>
+    <div class="prompt" id="cp-LR" data-tp="LR"></div><div id="cp-LRh" data-tp="LRh" hidden></div>
+    <div class="btnrow"><button type="button" class="copy" data-copy="cp-LR">Copy prompt</button><button type="button" class="copy" data-copy="cp-LRh">Copy: answer in Hiligaynon</button></div></div>
+  <div class="msgcard"><b>2. My lista as a table</b><span class="hil">Ang akon lista sa table</span>
+    <div class="prompt" id="cp-LT" data-tp="LT"></div><div id="cp-LTh" data-tp="LTh" hidden></div>
+    <div class="btnrow"><button type="button" class="copy" data-copy="cp-LT">Copy prompt</button><button type="button" class="copy" data-copy="cp-LTh">Copy: answer in Hiligaynon</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div></div>
+  <p class="check">Check every amount the AI gives back. Your notebook is the record; AI only helps you read it.</p></div>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1277,6 +1298,7 @@ const PARTS=[
   ${list([["Make paying easy","GCash or Maya QR at your table and in every post; check that the money is in your own app before you ship (a screenshot can be faked); give a simple receipt"],["Separate business money from house money","Two wallets, e.g. two e-wallets or one e-wallet plus a cash box. Pay yourself a fixed amount."],["Keep a simple sales record","Date · item · quantity · price · paid by. Five minutes a day."],["Your records are your collateral","Regular e-wallet payments and records show lenders your business is real, even without a land title. Stay away from five-six lenders."]])}
   ${task(4,"From notebook to table","<p class='check'>Attach a photo of one notebook page, or use the sample rows. <mark class='alert'>Cover customer names.</mark> Check every number.</p>")}
   ${priceCard}
+  ${listaCard}
   ${helpCard}`,"Good records open doors to better loans."),
  part(6,"Keep selling when disaster hits",`
   <p>Disasters hit marketing too: customers stay home, roads close, power and signal drop, stock is damaged. Tick the moves you already have:</p>
