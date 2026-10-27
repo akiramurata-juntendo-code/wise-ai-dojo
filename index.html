@@ -175,6 +175,11 @@ form.quiz .dots-legend{max-width:none}
 #planweeks label,#postsurvey .tip{display:grid;gap:2px}#planweeks label .hil{font-weight:400;font-size:.8rem}#planweeks label .hil::before{content:none}
 #planweeks h4 .tag,#postsurvey h4 .tag{white-space:nowrap;display:inline-block}
 #postsurvey a.btn{text-decoration:none;color:#2A1A00}
+.vgrid{display:grid;gap:12px}
+@media (min-width:820px){.vgrid{grid-template-columns:1fr 1fr}}
+#voice h3 .tag{font-size:.8rem;white-space:nowrap;vertical-align:middle}
+.vhow{font-size:.85rem;color:var(--muted)}
+#voice .msgcard .circles{margin:0}
 .msgcard{display:grid;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px}
 .msg{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--bg);border-radius:10px;padding:10px 12px;font-size:.95rem}.msg-hil{font-style:italic}
 .msg mark{background:var(--mango-soft);color:var(--mango-ink);padding:0 2px;border-radius:3px}
@@ -661,6 +666,7 @@ footer{margin-top:36px;font-size:.85rem;color:var(--muted)}
         <tr><td>3 Choose and stand out</td><td>S19–S25</td><td>Pick what makes me different; promise builder; Task 2</td><td>G2</td></tr>
         <tr><td>4 Tell and sell</td><td>S26–S33</td><td>Five-part post checklist; few-shot card with two participants' products (with and without examples, then a MassKara story in #context); Task 3; three checks; halfway challenge</td><td>G3</td></tr>
         <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
+        <tr><td>Day 2: Talk to AI (voice)</td><td>–</td><td>Warm-up after the Wish Board, 15 min. Keyboard microphone (voice typing) and voice chat; 3 tries: speak your story → post, say your sales → table, practise a hard customer. Hiligaynon voice typing may not work: speak Filipino or English and ask for Hiligaynon. Never say MPIN, OTP or customer details.</td><td>W1–W2, B1</td></tr>
         <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes)</td><td>B1, B2</td></tr>
         <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link</td><td>K1</td></tr>
         <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326</td><td>S1</td></tr>
@@ -1158,6 +1164,30 @@ const postSurvey=`<div class="reflect" id="postsurvey"><h4>Last step: tell us ho
   <p class="tip"><b>Your personal code</b><span>Write it exactly as in the pre-workshop survey: the first 2 letters of your mother's first name + the day you were born (2 digits) + the last 2 digits of your phone number. Example: Maria, born on the 7th, phone ending in 45 → <b>MA0745</b>. Did not answer the first survey? Make your code the same way and answer anyway.</span><span class="hil">Isulat ang imo code pareho sang una nga survey.</span></p>
   <a class="btn btn-primary" href="${POST_FORM}" target="_blank" rel="noopener" style="justify-self:start">Open the after-workshop survey</a>
   <p class="check">Salamat gid! Your answers help make the next training better.</p></div>`;
+// Talk to AI (Day 2 warm-up): voice typing + voice chat, 3 spoken tries
+TP.V1="Hi AI. I sell [product] in [place]. Let me tell you about it.\n___ (talk for 30 seconds: how you make it, why people like it, the price, how to order)\nNow write a short Facebook post from what I said. Keep my price exactly. Simple English first, then the same post in Hiligaynon.";
+TP.V2="Make a table with these columns: date, item, quantity, price, paid by.\nToday I sold ___ (say each sale, for example: 12 packs of [product] at 50 pesos each, 8 paid by GCash, 4 paid in cash).\nAdd the total at the bottom. Then list every number again so I can check it.";
+TP.V3="Let us practise. You are a customer in [place] who wants a big discount on my [product]. Talk to me in Filipino, one short line at a time. After 3 turns, stop and tell me one thing I did well and one better thing I can say.";
+const VTRY=[["V1","1. Speak your story → a Facebook post","Isugid ang imo produkto → post sa Facebook","Voice typing","2 min"],["V2","2. Say your sales → a sales table (Part 5)","Isiling ang imo nabaligya → table","Voice typing","2 min"],["V3","3. Practise with a hard customer","Mag-praktis upod sa customer nga nagapangayo sang diskwento","Voice chat","5 min"]];
+const voiceCard=`<article class="lpart" id="voice"><span class="lnum">Day 2 · warm-up</span><h3>Talk to AI: use your voice <span class="tag">15 min</span></h3>
+  <span class="hil">Istoryahi ang AI: gamita ang imo tingog</span>
+  <p>Your hands are busy: cooking, packing, the baby. Typing a long prompt on a small screen is slow. <b>Speak instead.</b> On a phone, talking is about 3 times faster than typing, and you can use it for every AI Task in this course.</p>
+  <div class="vgrid">
+    <div class="msgcard"><b>🎤 Voice typing: the microphone on your keyboard</b><span class="hil">Ang mikropono sa imo keyboard</span>
+      ${list([["Tap the box where you type.","In ChatGPT, Gemini, Meta AI, Messenger or Facebook."],["Tap the microphone 🎤","Android (Gboard): at the top of the keyboard. iPhone: bottom right, under the keyboard. Samsung keyboard: on the keyboard or its top bar."],["Speak in short sentences.","Say “comma”, “period”, “question mark” or “new line” for the marks (in English)."],["Stop, read, fix, then Send.","Tap the microphone again to stop. Nothing is sent until you tap Send."]])}</div>
+    <div class="msgcard"><b>🔊 Voice chat: you talk, AI talks back</b><span class="hil">Mag-istorya ka, kag mabalos ang AI</span>
+      <p>In ChatGPT or Gemini, tap the <b>sound-wave button</b> next to the box where you type (Gemini calls it <b>Live</b>). Free, with a daily limit. Good for practice and quick questions; use voice typing for posts you want to keep.</p></div>
+  </div>
+  <p class="tip"><b>Which language?</b><span>Voice typing works well in English and Filipino. Hiligaynon may not be on your phone's list. Mixing is fine. If the words come out wrong, speak Filipino or English and add "Answer in Hiligaynon". To switch on Gboard: tap the microphone, then the language letters (for example EN) at the bottom left. Add Filipino first in Gboard settings → Languages.</span><span class="hil">Puwede ka maghambal sa Filipino ukon English, dayon ipasabat sa Hiligaynon.</span></p>
+  <p>No need to say the # headings out loud. Say the same 4 things in your own words: <b>who</b> the AI should be, <b>your situation</b>, <b>the task</b>, and <b>the style</b>.</p>
+  <h4>Try it: 3 things to say</h4>
+  ${VTRY.map(([k,t,h,how,min])=>`<div class="msgcard"><b>${t} <span class="tag">${min}</span></b><span class="hil">${h}</span>
+    <span class="vhow">${how} · say this, or say it in your own words</span>
+    <div class="msg" id="cp-${k}" data-tp="${k}"></div>
+    <div class="btnrow"><button type="button" class="copy" data-copy="cp-${k}">Copy</button><a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div></div>`).join("")}
+  <p class="tip"><b>Check numbers and names</b><span>Voice typing can mix up "fifteen" and "fifty", or write a wrong name. Read every price and number before you send, and fix it with the keyboard.</span><span class="hil">Tan-awa liwat ang presyo kag numero antes mo i-send.</span></p>
+  <p class="tip tip-warn"><b>Do not say these out loud</b><span><mark class="alert">MPIN, OTP, passwords, customers' names, phone numbers or addresses.</mark> People near you can hear, and the AI app keeps what you say (ChatGPT keeps voice-chat audio for 30 days).</span><span class="hil">Indi pagsiling ang MPIN, OTP, password, ukon ngalan kag numero sang customer.</span></p>
+  <p class="key">Talk first, then check. AI drafts, you decide.</p></article>`;
 const PARTS=[
  part(1,"Opening: from zero to ready-to-sell",`
   <div class="stats"><div class="stat"><b>2–3 h</b><span>before: writing, counting and worrying</span></div><div class="stat"><b>~7 min</b><span>after: AI first draft, plus your own checking</span></div></div>
@@ -1192,6 +1222,7 @@ const PARTS=[
   <p><b>Before you post, three checks:</b> Is the price and information correct? Does it sound like me? Did I avoid promises I cannot keep (for example "cures diabetes", or "organic" without certification)?</p>
   <p class="tip"><b>Halfway</b><span>Use AI once for a real sale: one post or one reply to a real customer. Then come back.</span></p>`,"No price, no sale."),
  wishBoard,
+ voiceCard,
  part(5,"Get paid and keep records",`
   ${list([["Make paying easy","GCash or Maya QR at your table and in every post; check that the money is in your own app before you ship (a screenshot can be faked); give a simple receipt"],["Separate business money from house money","Two wallets, e.g. two e-wallets or one e-wallet plus a cash box. Pay yourself a fixed amount."],["Keep a simple sales record","Date · item · quantity · price · paid by. Five minutes a day."],["Your records are your collateral","Regular e-wallet payments and records show lenders your business is real, even without a land title. Stay away from five-six lenders."]])}
   ${task(4,"From notebook to table","<p class='check'>Attach a photo of one notebook page, or use the sample rows. <mark class='alert'>Cover customer names.</mark> Check every number.</p>")}
