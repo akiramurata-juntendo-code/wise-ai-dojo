@@ -168,6 +168,7 @@ form.quiz .dots-legend{max-width:none}
 .howto{background:var(--surface);border:1.5px solid var(--teal);border-radius:12px;padding:12px 14px;display:grid;gap:10px}
 .howto h5{margin:0;font:800 1rem var(--display);color:var(--teal)}.howto .circles li span{font-style:italic}
 .legend{display:grid;gap:8px}.legend div{display:grid;gap:2px}.legend span.l{font-size:.9rem}.legend span.h{font-size:.85rem;color:var(--muted);font-style:italic}
+.wb-en{display:block;font-size:.88rem;color:var(--muted);font-style:italic;margin-top:2px}
 .wish-send{justify-self:start;text-decoration:none;display:inline-block}
 .wb-list{display:grid}.wish-row{display:grid;gap:4px;padding:10px 0;border-bottom:1px dotted var(--line)}.wish-row:last-child{border-bottom:0}
 .wb-tag{justify-self:start;font-size:.78rem;font-weight:700;letter-spacing:.02em;padding:2px 9px;border-radius:999px;background:var(--bg);color:var(--muted);border:1px solid var(--line)}
@@ -1003,6 +1004,7 @@ const part=(n,title,body,key)=>`<article class="lpart" id="cp${n}"><span class="
 const fewshot="";
 // ---- Wish board (CSPS-style): wishes come from the wish form, are posted without names,
 // and each one names the part of the course or the Dojo step that answers it.
+// {cat, w: wish as written, en: English line when w is in Hiligaynon or Filipino, tag, where}
 const WISH_FORM="https://docs.google.com/forms/d/e/1FAIpQLSeCc5U1mlQzpxkTy2JBgn5FIyKBzNiDEGrzL20sjhFksCtL4A/viewform";
 const WISHES=[
 ];
@@ -1011,7 +1013,7 @@ const WTAG={done:"Covered",day2:"Day 2",dojo:"In the Dojo",next:"Next step"};
 const wishSend=()=>WISH_FORM?`<a class="btn btn-primary wish-send" href="${WISH_FORM}" target="_blank" rel="noopener">Send my wish</a>`:`<p class="check">The wish form opens soon. Until then, tell your wish to the facilitator.</p>`;
 const howSend=`<div class="howto"><h5>How to send your wish</h5><span class="hil">Paano magpadala sang imo handum</span>
   ${list([["Tap the orange button \"Send my wish\".","I-tap ang orange nga button nga \"Send my wish\"."],
-    ["Write one wish: a task in your business that you would love AI to do. Example: \"Write my Facebook posts for payday.\"","Isulat ang isa ka handum: isa ka buluhaton sa imo negosyo nga gusto mo ipabulig sa AI."],
+    ["Write one wish: a task in your business that you would love AI to do. Example: \"Write my Facebook posts for payday.\" <u>English, Hiligaynon or Filipino are all fine.</u>","Isulat ang isa ka handum: isa ka buluhaton sa imo negosyo nga gusto mo ipabulig sa AI. Pwede ka magsulat sa English, Hiligaynon ukon Filipino."],
     ["If you like, write what you sell: the type only, no names.","Kon gusto mo, isulat kon ano ang imo ginabaligya: ang klase lang, wala sang ngalan."],
     ["Tap Submit. You can send more than one wish.","I-tap ang Submit. Pwede ka magpadala sang sobra sa isa ka handum."],
     ["On Day 2, find your wish on the Wish Board.","Sa Day 2, pangitaa ang imo handum sa Wish Board."]])}</div>`;
@@ -1027,7 +1029,7 @@ const howRead=`<div class="howto"><h5>How to read the Wish Board</h5><span class
   </div></div>`;
 const wishRound=`<div class="reflect" id="wishround"><h4>Wish Round: one wish for AI <span class="tag">5 min</span></h4>
   <span class="hil">Isa ka handum para sa AI</span>
-  <p>At your table, take one minute each. Say the name you like to be called, what you sell, and <b>one wish</b>: a task from your business week that you would love to hand to an AI helper.</p>
+  <p>At your table, take one minute each. Say the name you like to be called, what you sell, and <b>one wish</b>: a task from your business week that you would love to hand to an AI helper. Say it and write it in the language you like best: English, Hiligaynon or Filipino.</p>
   <p>Then send your wish. On Day 2 it appears on the <a href="#course" data-goto="course" data-part="wishboard">Wish Board</a>, <b>without your name</b>, next to the part of the course that answers it.</p>
   ${howSend}
   ${wishSend()}
@@ -1042,8 +1044,8 @@ function drawWishes(){
   el.innerHTML=`<p><b>${WISHES.length} wishes</b> from the group, in ${cats.length-1} baskets. Tap a basket to read the wishes inside; tap it again to close.</p>
    ${howRead}
    <div class="chips">${cats.map(c=>`<button type="button" class="wb-btn" data-wcat="${c[0]}" aria-pressed="${wCat===c[0]}">${c[1]} (${n(c[0])})</button>`).join("")}</div>
-   <div class="wb-list">${wCat?WISHES.filter(x=>wCat==="all"||x.cat===wCat).map(x=>`<div class="wish-row"><span class="wb-tag ${x.tag}">${WTAG[x.tag]||x.tag}${x.where?" · "+x.where:""}</span><span>${x.w}</span></div>`).join(""):""}</div>
-   <p class="check">From the Wish Round, no names. Missing yours? ${WISH_FORM?`<a href="${WISH_FORM}" target="_blank" rel="noopener">Send it here</a>.`:"Tell your facilitator."}</p>`;
+   <div class="wb-list">${wCat?WISHES.filter(x=>wCat==="all"||x.cat===wCat).map(x=>`<div class="wish-row"><span class="wb-tag ${x.tag}">${WTAG[x.tag]||x.tag}${x.where?" · "+x.where:""}</span><span>${x.w}${x.en?`<span class="wb-en">English: ${x.en}</span>`:""}</span></div>`).join(""):""}</div>
+   <p class="check">From the Wish Round, no names. Wishes written in Hiligaynon or Filipino are shown as written, with an English line below. Missing yours? ${WISH_FORM?`<a href="${WISH_FORM}" target="_blank" rel="noopener">Send it here</a>.`:"Tell your facilitator."}</p>`;
 }
 document.addEventListener("click",e=>{const b=e.target.closest(".wb-btn");if(!b)return;wCat=(wCat===b.dataset.wcat)?null:b.dataset.wcat;drawWishes();});
 const PARTS=[
