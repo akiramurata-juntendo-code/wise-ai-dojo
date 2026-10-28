@@ -380,6 +380,11 @@ html[data-fs="2"]{font-size:125%}
  .fs-row{top:10px}
  header .stairs{margin-block:8px 10px}
 }
+.gfacts{display:flex;flex-wrap:wrap;gap:6px}.gfacts span{font-size:.85rem;font-weight:700;background:var(--teal-soft);color:var(--teal);border-radius:999px;padding:4px 10px}
+ol.gcheck{margin:0;padding-left:1.4em;display:grid;gap:6px}
+#guide h4{font:700 1.02rem var(--display);margin:4px 0 0}
+.gcards{display:grid;gap:10px;grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}.gcard{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:6px}.gcard>b{font:700 1rem var(--display);color:var(--teal)}.gcard dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:4px 10px}.gcard dt{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);padding-top:2px}.gcard dd{margin:0;font-size:.95rem}
+@media (max-width:600px){.gcard dl{grid-template-columns:1fr}.gcard dt{padding-top:0}}
 </style>
 </head>
 <body>
@@ -430,7 +435,7 @@ html[data-fs="2"]{font-size:125%}
       <span class="eyebrow">AI Match Quiz</span>
       <h2>What's your AI level?</h2>
       <span class="hil">Ano ang imo AI level?</span>
-      <p class="check">13 quick questions, about 5 minutes. Tap an answer and the next question comes. There are no wrong answers; answer honestly to get the right path. Your answers stay on this phone. Nothing is sent unless you tap "Send my answers" later.</p>
+      <p class="check">13 quick questions, about 5 minutes. Tap an answer and the next question comes. There are no wrong answers; answer honestly to get the right path. Your answers stay on this phone.<span class="wise-send-note"> Nothing is sent unless you tap "Send my answers" later.</span></p>
       <ol class="lvl-list" aria-label="The five levels">
         <li><b>1</b> Starter</li><li><b>2</b> Prompt Maker</li><li><b>3</b> Online Seller</li><li><b>4</b> Smart Manager</li><li><b>5</b> Mentor</li>
       </ol>
@@ -690,168 +695,294 @@ html[data-fs="2"]{font-size:125%}
 
 <section class="view guide" id="guide" role="tabpanel" aria-labelledby="tab-guide" hidden>
   <div style="display:grid;gap:10px">
-    <h2>How the Dojo works</h2>
-    <p class="note">Design constraints for this run: about 30 participants, almost all with a smartphone only (no laptop), and only free AI tools.</p>
-    <p>The Dojo turns the two-day Enterprise Development &amp; Digital Management block into five levels, from Level 1 Starter to Level 5 Mentor. Each participant takes a five-minute "AI Match Quiz" on her phone (framed like a Facebook personality quiz, not a test, so nobody feels examined), gets a starting level, and follows a path of 6 to 8 practice steps chosen for her business type, skill level, main goal and language. Everyone works on the same six marketing outputs from the slide deck, so the room stays together while each person starts at a different step.</p>
+    <span class="eyebrow">Facilitator guide · for LGU and DTI staff and partners</span>
+    <h2>Run the WISE AI Dojo in your community</h2>
+    <p class="lede">This guide is for Negosyo Center business counselors, LGU business, GAD, cooperative, PESO and social welfare officers, and partner organisations who want to run the Dojo with women micro-entrepreneurs. You do not need to be an AI expert. You need a smartphone, this page, and the habit of checking what AI says.</p>
+    <div class="gfacts"><span>Phones only</span><span>Free AI apps</span><span>3 hours to 2 days</span><span>15–30 participants</span><span>English, with a local-language button</span></div>
+    <p class="note">Chapters 1–10 help you run a session. Chapter 11 is a one-day programme to train new facilitators. The appendix shows how the first run in Kabankalan City worked. Tap <b>☰ Contents</b> at the bottom right to jump to a chapter.</p>
   </div>
 
   <div style="display:grid;gap:12px">
-    <h3>The five levels</h3>
+    <h3>1 · What the Dojo is</h3>
+    <p>One web page that works in any smartphone browser. Nothing to install. Participants open it from a link or QR code, and their answers stay on their own phone.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Tab</th><th>What participants do</th></tr></thead>
+      <tbody>
+        <tr><td>My Dojo</td><td>A 5-minute "AI Match Quiz" gives a level from 1 to 5 and a personal path of 6–8 practice steps for her business, goal and language.</td></tr>
+        <tr><td>Lead your day</td><td>A lesson on leadership, care work and time, with short videos. She colours her 24 hours on a normal day and a disaster day.</td></tr>
+        <tr><td>Sell smarter</td><td>8 parts and 6 AI tasks on marketing, records, disasters and safety, each opening with a short video, plus local cards (prices, credit, support, insurance, safe selling).</td></tr>
+        <tr><td>Handouts</td><td>The slides as PDF, to read, print or share.</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>How a task works:</b> she types her business details once. Every prompt fills them in. She copies the prompt, pastes it into a free AI app (ChatGPT, Gemini or Meta AI), changes the yellow words, sends it, then checks the answer before she uses it.</p>
+    <p class="tip"><b>The one rule</b><span>"AI drafts, you decide." Say it at the start and after every task.</span></p>
+    <p><b>What she takes home:</b> a customer profile, a one-sentence promise, a Facebook post with replies, a sales table, ready disaster messages and a 30-day plan saved as PDF.</p>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <h3>2 · Get ready: your own run-through</h3>
+    <p>Before you teach it, do it as a participant, on your own phone. Watch the lecture videos, take the quiz, colour your 24 hours, and finish AI Tasks 1–6 for your own business or an imaginary one. Then save the 30-day plan as PDF. Allow about 4 hours with the videos.</p>
+    <p><b>Readiness checklist.</b> Run your first session when you can tick all eight.</p>
+    <ol class="gcheck">
+      <li>I can explain "AI drafts, you decide" in one sentence, in the local language.</li>
+      <li>On my phone, in front of people, I can copy a prompt, switch to the AI app, paste, change the yellow words and send.</li>
+      <li>I can show my phone screen to the room (screen mirroring, a cable, or a phone camera on a projector), or I have a plan without a projector.</li>
+      <li>I can point out three kinds of AI mistakes: wrong maths, invented rules, and claims nobody can prove (Part 7).</li>
+      <li>I know the never-type list and why: <mark class="alert">MPIN, OTP, passwords, and customers' names, phone numbers and addresses.</mark></li>
+      <li>I have checked the local facts on the page for my area (Chapter 7).</li>
+      <li>I know where to refer a participant: Negosyo Center, SSS and PhilHealth, barangay VAW desk, police Women and Children Protection Desk, CICC hotline 1326.</li>
+      <li>I have tested the venue: mobile signal or Wi-Fi, and that chatgpt.com and gemini.google.com open.</li>
+    </ol>
+    <p><b>Team:</b> one lead facilitator, plus one co-facilitator for every 15 participants. At least one of you should speak the participants' language. If you can, invite a past participant at Level 4 or 5 as a "Dojo buddy".</p>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <h3>3 · Choose a format</h3>
+    <p>Pick the format that fits your participants' time. Women with small children and stores to open often cannot give two full days: a 3-hour session they can attend is better than a 2-day course they miss.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Format</th><th>Cover</th><th>Best for</th></tr></thead>
+      <tbody>
+        <tr><td>A · 3-hour starter</td><td>Quiz, Parts 1, 2 and 4 (Tasks 1 and 3), Part 7, a short Part 8</td><td>First-time AI users; a barangay or association meeting</td></tr>
+        <tr><td>B · One day</td><td>Morning: Lead your day and Parts 1–3. Afternoon: Parts 4, 5, 7 and 8</td><td>Negosyo Center client groups; women's associations</td></tr>
+        <tr><td>C · Two days</td><td>Day 1: Lead your day, Parts 1–4. Day 2: Wish Board, voice, Parts 5–8</td><td>Programmes with business-continuity planning, like WISE (see the appendix)</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Format A, minute by minute:</b></p>
+    <div class="tbl"><table>
+      <thead><tr><th>Time</th><th>Activity</th></tr></thead>
+      <tbody>
+        <tr><td>0:00–0:20</td><td>Welcome, QR code, AI Match Quiz; show of hands by level; seat mixed tables</td></tr>
+        <tr><td>0:20–0:35</td><td>Part 1: "AI drafts, you decide"; live demo of the first prompt from your phone</td></tr>
+        <tr><td>0:35–1:05</td><td>Part 2 and AI Task 1 (customer profile)</td></tr>
+        <tr><td>1:05–1:50</td><td>Part 4 and AI Task 3 (post, picture idea, replies), with the three checks</td></tr>
+        <tr><td>1:50–2:00</td><td>Break</td></tr>
+        <tr><td>2:00–2:30</td><td>Part 7: Spot the mistake and Scam check</td></tr>
+        <tr><td>2:30–2:55</td><td>Part 8: one action a week; save the plan as PDF</td></tr>
+        <tr><td>2:55–3:00</td><td>Close: one thing to do in the next 7 days</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>90-minute theme modules</b> for a group with one need:</p>
+    <ul>
+      <li><b>Price and records</b> (cooperatives, associations): Part 5: Task 4, Price it right, Lista, Buy together.</li>
+      <li><b>Ready before the storm</b> (before typhoon season, or after a disaster): Part 6: Task 5, Ready messages, Protect yourself and your income, Keep your phone working, plus Clock B in Lead your day.</li>
+      <li><b>Sell online, safely</b>: Part 4 (Task 3, Sell beyond your town) and Part 7 (Scam check, Safe online as a woman seller).</li>
+      <li><b>First visit to the Negosyo Center</b>: the Help and capital card and its business-profile prompt. Clients arrive with a one-page profile.</li>
+    </ul>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <h3>4 · Part by part</h3>
+    <p>For each part: what participants can do at the end, the line to say, and what to watch for. The slides for each part are in Handouts.</p>
+    <div class="gcards">
+      <div class="gcard"><b>Lead your day 1–2: leading in three circles</b><dl><dt>She can</dt><dd>Name who helps her business, by role</dd><dt>Say this</dt><dd>"Asking for help is leadership."</dd><dt>Watch for</dt><dd>Part 1 shows Kabankalan figures; use your own area's (Chapter 7).</dd></dl></div>
+      <div class="gcard"><b>Lead your day 3–5: gender lens, my 24 hours, one change</b><dl><dt>She can</dt><dd>Colour her 24 hours on a normal day and a disaster day, and choose one change (Recognize, Reduce, Redistribute)</dd><dt>Say this</dt><dd>"Time is a Pinaypreneur's scarcest capital."</dd><dt>Watch for</dt><dd>Keep it about time, not blame. Clock B shows how a disaster moves hours into care work.</dd></dl></div>
+      <div class="gcard"><b>1 Opening, with the Wish Round</b><dl><dt>She can</dt><dd>Send a first prompt and read the answer; say one wish for AI</dd><dt>Say this</dt><dd>"AI does the first draft. You stay the boss."</dd><dt>Watch for</dt><dd>Login trouble: ChatGPT works without an account.</dd></dl></div>
+      <div class="gcard"><b>2 Know your customer (Task 1)</b><dl><dt>She can</dt><dd>Write a customer profile</dd><dt>Say this</dt><dd>"Fix the weakest step first."</dd><dt>Watch for</dt><dd>Answers that are too general. Ask: "Who bought from you last week?"</dd></dl></div>
+      <div class="gcard"><b>3 Choose and stand out (Task 2)</b><dl><dt>She can</dt><dd>Write a one-sentence promise and a product description</dd><dt>Say this</dt><dd>"Low price is easy to copy. Your story is not."</dd><dt>Watch for</dt><dd>Everyone picks "cheap". Push for story, service and packaging.</dd></dl></div>
+      <div class="gcard"><b>4 Tell and sell (Task 3, few-shot card, Sell beyond)</b><dl><dt>She can</dt><dd>Make a post with a price, a picture idea and Messenger replies</dd><dt>Say this</dt><dd>"No price, no sale."</dd><dt>Watch for</dt><dd>AI adds claims such as "cures" or "organic". Do the three checks before posting. The few-shot card shows two real products from the first run, used with the makers' permission.</dd></dl></div>
+      <div class="gcard"><b>Wish Board (Day 2)</b><dl><dt>She can</dt><dd>See her own question answered</dd><dt>Say this</dt><dd>"Your questions shape the course."</dd><dt>Watch for</dt><dd>Run it on paper (Chapter 5).</dd></dl></div>
+      <div class="gcard"><b>Talk to AI: use your voice</b><dl><dt>She can</dt><dd>Speak a story and get a post; say sales and get a table</dd><dt>Say this</dt><dd>"Speak, then check."</dd><dt>Watch for</dt><dd>Voice typing may not understand the local language: speak Filipino or English, then ask for the answer in the local language. <mark class="alert">Never say MPIN or OTP aloud.</mark></dd></dl></div>
+      <div class="gcard"><b>5 Get paid and keep records (Task 4, Price it right, Lista, Buy together, Help and capital)</b><dl><dt>She can</dt><dd>Turn a notebook photo into a sales table, set a price that covers costs, follow the lista rules</dd><dt>Say this</dt><dd>"Good records open doors to better loans."</dd><dt>Watch for</dt><dd>Customer names in notebook photos: cover them. Photo uploads hit daily limits, so run Task 4 early in the day.</dd></dl></div>
+      <div class="gcard"><b>6 Keep selling when disaster hits (Task 5, Ready messages, Protect yourself, Keep your phone working)</b><dl><dt>She can</dt><dd>Make a "still open" plan and save 4 ready messages on her phone</dd><dt>Say this</dt><dd>"A ready message is faster than a worried one."</dd><dt>Watch for</dt><dd>Safety advice must come from PAGASA, PHIVOLCS and the LGU DRRMO, not from AI. SSS and PhilHealth amounts change: send her to the offices.</dd></dl></div>
+      <div class="gcard"><b>7 Use AI safely (Spot the mistake, Scam check, Safe online)</b><dl><dt>She can</dt><dd>Catch AI mistakes and seller scams; know where to report harassment</dd><dt>Say this</dt><dd>"Sounding sure is not the same as being right."</dd><dt>Watch for</dt><dd>Someone may share a scam loss or harassment. Talk privately and refer (Chapter 6).</dd></dl></div>
+      <div class="gcard"><b>The selling year</b><dl><dt>She can</dt><dd>Plan posts and offers for the next 3 months</dd><dt>Say this</dt><dd>"Plan around paydays, fiestas and seasons."</dd><dt>Watch for</dt><dd>The month tiles are for southern Negros: change them for your area (Chapter 7).</dd></dl></div>
+      <div class="gcard"><b>8 My 30-day plan (Task 6)</b><dl><dt>She can</dt><dd>Save a 30-day plan with one action a week as PDF</dd><dt>Say this</dt><dd>"AI drafts, you decide."</dd><dt>Watch for</dt><dd>PDF saving differs by phone: long-press the picture, or take a screenshot.</dd></dl></div>
+    </div>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <h3>5 · Facilitation skills</h3>
+    <p><b>Seat by level.</b> The quiz gives each person a level. Mix the levels at every table and put one Level 4 or 5 at each as "Dojo buddy". Levels 1 and 2 start with the first steps on their path, then join Task 1.</p>
     <div class="tbl"><table>
       <thead><tr><th>Level</th><th>She can…</th><th>Steps (code for facilitators)</th><th>Deck link</th></tr></thead>
       <tbody id="belt-table"></tbody>
     </table></div>
-    <p class="note">Safety (S1) is on every path, right after the first step, whatever the level. Participants who rate Q9 (judge AI answers) at 1–2 get it marked as a priority.</p>
+    <p class="note">Step codes (W, Y, G, B, K, S) are hidden on the participant screen. Safety (S1) is on every path, right after the first step.</p>
+    <ul>
+      <li><b>Demonstrate from a phone, not a laptop.</b> Participants see exactly what they will do: Dojo page in one tab, AI app in the other. Copy, switch app, long-press, Paste, change the yellow words, send. Do it slowly once, then let tables do it.</li>
+      <li><b>Examples are fictional.</b> Ate Nena and Ate Lorna are made-up sellers. Participants replace the yellow words with their own business.</li>
+      <li><b>Check, every time.</b> After each AI answer, ask the table: "What would you change before you post this?"</li>
+      <li><b>Language.</b> Prompts are in simple English, with a "Copy: answer in Hiligaynon" button. The Hiligaynon lines on the page are drafts, so ask a local speaker to check them. In other regions, participants can change "Hiligaynon" in the prompt to Cebuano, Tagalog or another language.</li>
+      <li><b>Low literacy, older participants, slow typing.</b> Pair them with a buddy, show the microphone button, and aim for 1–2 tasks done well rather than all six.</li>
+      <li><b>Finding a card.</b> Sell smarter opens with "Go to a part". The <b>☰ Contents</b> button at the bottom right lists every part and card; <b>↑</b> goes back to the top. Each tab remembers where you were.</li>
+    </ul>
+    <p><b>Gender-responsive facilitation</b></p>
+    <ul>
+      <li>Schedule around care work: start after school drop-off, end before pick-up, and allow children in the room or a childcare corner.</li>
+      <li>Use women's real businesses as examples: sari-sari stores, food, crafts, farm produce, services.</li>
+      <li>Never shame anyone about debt (lista), income or family roles. Talk about time and systems, not personal failure.</li>
+      <li>When you discuss online harassment, keep the group women-only if you can, and let a woman facilitator handle private referrals.</li>
+    </ul>
+    <p><b>The Wish Board, on paper.</b> In the first run, wishes came in through an online form (open until 30 November 2026) and the WISE team posted them on the page overnight. In your own run:</p>
+    <ol class="gcheck">
+      <li>Day 1 (or the start of a short session): each person writes one wish for AI on a card, without her name.</li>
+      <li>At the break or in the evening: group the cards, and for each wish find the part or card on the page that answers it.</li>
+      <li>Next session: read 3–5 wishes aloud and open the answer on your phone. The Wish Board on the page shows the Kabankalan group's wishes as an example.</li>
+    </ol>
   </div>
 
   <div style="display:grid;gap:12px">
-    <h3>How the quiz sets the level</h3>
+    <h3>6 · Safety, privacy and where to refer</h3>
+    <p class="never"><strong>Never type into any AI app: MPIN, OTP, passwords, or customers' names, phone numbers and addresses.</strong><span>Free AI apps may use chats to train the AI. Say this at the start of every session.</span></p>
     <ul>
-      <li>Q6–Q10 are plain-language versions of the five <b>capability items</b> in survey Section E (codes E-C1 to E-C5), on the same 1–5 scale. The Dojo result can be compared with pre/post survey scores.</li>
-      <li>Score (0–100) = capability 50% + AI-use frequency (Q5, same options as survey Q27) 30% + phone skills (Q3) 20%.</li>
-      <li>Q4 (Gmail) does not change the score. Without Gmail, the path flags the Gemini Notebook step as "Needs Gmail" and suggests ChatGPT first; facilitators help make accounts at the break.</li>
-      <li>The quiz has three parts with # headings (#My business, #My phone and AI, #My goals), the same structure participants later use in prompts.</li>
-      <li>Each level shows a one-line "AI forecast", a playful promise of the next result she can reach, which keeps the fortune-telling feel while pointing at a real task.</li>
-      <li>Level cut-offs: Level 1 under 20, Level 2 20–39, Level 3 40–59, Level 4 60–79, Level 5 80+.</li><li>Step codes (W, Y, G, B, K, S) are for facilitators only and are hidden on the participant screen.</li>
-      <li>Someone who has never used AI starts at Level 1 or 2, however high her self-rating. Her first task is to ask AI one real question.</li>
-      <li>All practice prompts use the same # headings as the Day 1 morning slides (#role, #context, #task, #style, plus #rules where needed), so beginners see one prompt structure all workshop. Y1 teaches the recipe explicitly.</li>
-      <li>Q12 (goal) moves her goal modules to the front of the path. Goal modules below her level stay on the path as a quick round, so every path keeps the six deck tasks in view. Q11 (worry) adds one coaching tip, mirroring the four barrier items in the survey, plus scams and mobile data.</li>
+      <li><b>Privacy law.</b> The Data Privacy Act of 2012 (RA 10173): collect only what you need. The page asks for business facts and roles, not names. Keep your attendance sheet under your office's normal rules, and never put it into AI.</li>
+      <li><b>Where answers are kept.</b> Answers stay in the participant's own phone browser. On a shared phone, use "Clear all my answers on this phone" at the bottom of the page. For the first run only, two buttons sent answers to the WISE Program team: "Send my answers" and the online Wish Round form. They show until 30 November 2026 and are removed from 1 December, so in your sessions nothing leaves the phone.</li>
+      <li><b>Scams.</b> Check money in your own GCash or Maya app, never from a screenshot. To report: the app's Help Center and the CICC hotline 1326.</li>
+      <li><b>Online harassment.</b> It is against the law under the Safe Spaces Act (RA 11313). Steps: don't reply, screenshot, block and report. Refer to the barangay VAW desk, the police Women and Children Protection Desk, the PNP Anti-Cybercrime Group (acg.pnp.gov.ph) or CICC 1326. If she is in danger now: 911.</li>
+      <li><b>Your duty as facilitator.</b> If a participant shares a scam loss, harassment or violence at home, listen, keep it private, do not put it into AI, and refer her to the right office.</li>
+      <li><b>Disasters.</b> Official advisories come first: PAGASA, PHIVOLCS and your LGU DRRMO. AI only helps write messages.</li>
     </ul>
   </div>
 
   <div style="display:grid;gap:12px">
-    <h3>Day 1 morning: "Lead your day" lesson</h3>
-    <p>The <a href="#lesson" data-goto="lesson">Lead your day</a> tab turns the 27 Oct 9:00–12:00 slides into a self-paced lesson. It works with the slides in the room, and on its own for anyone who missed the session.</p>
+    <h3>7 · Make it local</h3>
+    <p>Several cards carry facts for Kabankalan City and southern Negros. Before a session elsewhere, check them for your area. Tell participants what is different, or write your local facts on the board.</p>
     <div class="tbl"><table>
-      <thead><tr><th>Lesson part</th><th>Slides</th><th>What the phone adds</th></tr></thead>
+      <thead><tr><th>Card</th><th>Check for your area</th><th>Where to check</th></tr></thead>
       <tbody>
-        <tr><td>1 Kabankalan and us</td><td>S03–S07</td><td>Three key figures and the main message</td></tr>
-        <tr><td>2 Lead in three circles</td><td>S09–S11</td><td>"Who helps my business?" written by role, saved on the phone</td></tr>
-        <tr><td>3 A gender lens</td><td>S13–S16</td><td>Care-hours bar chart and the 3 Rs</td></tr>
-        <tr><td>4 My 24 hours</td><td>S18–S21, S24</td><td>Tap-to-colour Clock A and Clock B, hours counted automatically, and the S21 prompt written from her own hours (English or Hiligaynon), plus a disaster-day prompt</td></tr>
-        <tr><td>5 One change this week</td><td>S22–S23</td><td>3 Rs commitment card to screenshot</td></tr>
+        <tr><td>Lead your day, Part 1</td><td>Local figures on women and business</td><td>LGU planning office, PSA</td></tr>
+        <tr><td>Help and capital near you</td><td>Your Negosyo Center's address and hours; local DSWD and DOLE programmes</td><td>DTI provincial office, LGU</td></tr>
+        <tr><td>The selling year</td><td>Fiestas, charter day, harvest seasons, typhoon months</td><td>LGU tourism and agriculture offices, PAGASA</td></tr>
+        <tr><td>Keep your phone working</td><td>Your electric cooperative or utility and its outage hotline</td><td>The utility's official website or Facebook page</td></tr>
+        <tr><td>Protect yourself and your income</td><td>SSS and PhilHealth amounts (they change)</td><td>SSS and PhilHealth offices</td></tr>
+        <tr><td>Sell beyond your town</td><td>FDA and BIR rules for selling outside town and online</td><td>Negosyo Center, FDA, BIR</td></tr>
+        <tr><td>Ready messages</td><td>Your main hazards: typhoon, flood, ashfall, earthquake</td><td>LGU DRRMO, PAGASA, PHIVOLCS</td></tr>
+        <tr><td>Local-language lines</td><td>Spelling and meaning</td><td>A local speaker</td></tr>
       </tbody>
     </table></div>
-    <p class="note">The paper worksheet (S24) still works; the phone clock is an option for those who prefer it. "Find my free hours" also appears as the first step of every Dojo path.</p>
+    <p class="tip"><b>Check every fact at its source</b><span>Especially facts an AI tool gave you. In the first run, an AI summary got a piece of local history wrong (the ship in the MassKara story). The page now shows the correction in Part 4. Use that story to show participants why checking matters.</span></p>
   </div>
 
   <div style="display:grid;gap:12px">
-    <h3>Day 1 afternoon: "Sell smarter" course</h3>
-    <p>The <a href="#course" data-goto="course">Sell smarter</a> tab turns the 55-slide afternoon deck into 8 self-paced parts. The six AI Task prompts are the ones on the slides, filled in from each participant's own details. The same prompts appear in the Dojo path steps, each with a "Learn it first" link to its part.</p>
+    <h3>8 · When things go wrong</h3>
     <div class="tbl"><table>
-      <thead><tr><th>Course part</th><th>Slides</th><th>Phone activity</th><th>Dojo step</th></tr></thead>
+      <thead><tr><th>Problem</th><th>Try this</th></tr></thead>
       <tbody>
-        <tr><td>1 Opening</td><td>S02–S11</td><td>Before/after, Lorna, three questions; Wish Round (one wish each, sent by form)</td><td>W1</td></tr>
-        <tr><td>2 Know your customer</td><td>S12–S18</td><td>Tap the 4 influences and the weakest step; Task 1</td><td>G1</td></tr>
-        <tr><td>3 Choose and stand out</td><td>S19–S25</td><td>Pick what makes me different; promise builder; Task 2</td><td>G2</td></tr>
-        <tr><td>4 Tell and sell</td><td>S26–S33</td><td>Five-part post checklist; few-shot card with two participants' products (with and without examples, then a MassKara story in #context); Task 3; three checks; halfway challenge; take-home "Sell beyond Kabankalan" (label, FDA, BIR for online marketplaces, packing, pasalubong) with a checklist prompt</td><td>G3</td></tr>
-        <tr><td>Day 2: Wish Board</td><td>–</td><td>The group's wishes, posted overnight without names, each tagged with the part or Dojo step that answers it. Open the morning with it.</td><td>–</td></tr>
-        <tr><td>Day 2: Talk to AI (voice)</td><td>–</td><td>Warm-up after the Wish Board, 15 min. Keyboard microphone (voice typing) and voice chat; 3 tries: speak your story → post, say your sales → table, practise a hard customer. Hiligaynon voice typing may not work: speak Filipino or English and ask for Hiligaynon. Never say MPIN, OTP or customer details.</td><td>W1–W2, B1</td></tr>
-        <tr><td>5 Get paid and keep records</td><td>S35–S40</td><td>Task 4; "Price it right" calculator and price prompt (from the wishes); "Lista: selling on credit" (6 rules, codes not names, reminder and lista-table prompts); "Help and capital near you" (Negosyo Center, BMBE, DOST SETUP, SB Corp P3 vs 5-6, DSWD/DOLE) with a business-profile prompt; take-home "Buy together" (group buying, women's groups, cooperatives, DTI Shared Service Facilities) with a price-comparison prompt</td><td>B1, B2</td></tr>
-        <tr><td>6 Keep selling when disaster hits</td><td>S41–S45</td><td>Five continuity moves; Task 5; 4 ready messages (before, closed, late order, open again) in English and Hiligaynon; fair-price rule (Price Act); HANDA link; "Protect yourself and your income" (SSS for self-employed, PhilHealth, microinsurance, PCIC, typhoon fund) with a plan prompt; take-home "Keep your phone working" (power bank, battery, data, offline copies, floods) with a brownout-plan prompt</td><td>K1</td></tr>
-        <tr><td>7 Use AI safely</td><td>S46–S50</td><td>Spot-the-mistake (tap to reveal); Scam check: 6 tap cards on seller scams, a scam-check prompt, CICC hotline 1326; "Safe online as a woman seller" (Safe Spaces Act; screenshot, block, report; barangay VAW desk, PNP WCPD, PNP ACG, CICC 1326) with a message-check prompt</td><td>S1</td></tr>
-        <tr><td>Plan ahead: the selling year</td><td>–</td><td>12 month tiles for southern Negros (Sinulog de Kabankalan, tiempo muerto, Charter Day, milling season, Undas, Christmas, typhoon season); this month and the next two are marked; 3-month post and offer prompt. Feeds the 30-day plan.</td><td>G1–G3</td></tr>
-        <tr><td>8 My 30-day plan</td><td>S51–S54</td><td>Task 6; My 4 weeks; my answers to the three questions; Save my 30-day plan as PDF; after-workshop survey button</td><td>K2</td></tr>
+        <tr><td>No signal, or the Wi-Fi fails</td><td>One phone with data per table, shared by the 5 people. Run the quiz on paper: the 13 questions fit on one A4 sheet, and you count the score by hand (Appendix A). The page is small: opening it once is enough, and it keeps working after that.</td></tr>
+        <tr><td>"Limit reached" in the AI app</td><td>Switch app: ChatGPT, Gemini or Meta AI. Run photo tasks (Task 4) early in the day.</td></tr>
+        <tr><td>No Gmail or Google account</td><td>ChatGPT works without an account. Make accounts at the break with a buddy, not during the session.</td></tr>
+        <tr><td>"Copy prompt" does nothing</td><td>Long-press the prompt text, Select all, Copy.</td></tr>
+        <tr><td>The PDF will not save</td><td>Long-press the picture that appears, or take a screenshot.</td></tr>
+        <tr><td>Voice typing gets the words wrong</td><td>Speak Filipino or English and ask for the answer in the local language.</td></tr>
+        <tr><td>30 phones load videos at once</td><td>Don't. The videos are for review at home; the live session covers the same content.</td></tr>
+        <tr><td>The AI answer is wrong or strange</td><td>Good. Show it to the room: it is the best Part 7 example you will get.</td></tr>
       </tbody>
     </table></div>
-  </div>
-
-  <div style="display:grid;gap:12px" id="day2run">
-    <h3>Day 2 run sheet (28 Oct, 09:00–12:00)</h3>
-    <p>Day 2 now starts at 09:00, one hour later than planned, so the morning is 3 hours. About 10 cards on the page are not on the slides. This plan keeps the core tasks in the room and sends the rest home: the page keeps every answer on the participant's phone. If you fall behind, use the last column.</p>
-    <div class="tbl"><table>
-      <thead><tr><th>Time</th><th>Card</th><th>In the room</th><th>If time is short</th></tr></thead>
-      <tbody>
-        <tr><td>09:00–09:10</td><td>Wish Board</td><td>Open with 2–3 wishes and show where each is answered. Say the Hiligaynon replies aloud.</td><td>–</td></tr>
-        <tr><td>09:10–09:15</td><td>Finish Part 4</td><td>Day 1 ended at Task 3. Do the three checks before posting, then the Halfway question: who used AI for a real post or reply last night?</td><td>–</td></tr>
-        <tr><td>09:15–09:25</td><td>Talk to AI (voice)</td><td>Everyone tries 1 (story → post) by voice. Test Hiligaynon voice typing on one phone; if it fails, speak Filipino.</td><td>Tries 2 and 3 at home</td></tr>
-        <tr><td>09:25–09:45</td><td>Part 5: Task 4</td><td>Notebook photo → table (B1). Cover customer names. Level 4–5 helpers photograph notebooks.</td><td>Use the sample rows</td></tr>
-        <tr><td>09:45–10:00</td><td>Price it right</td><td>Everyone enters one product. Read out one "below cost" warning and fix it together.</td><td>–</td></tr>
-        <tr><td>10:00–10:10</td><td>Lista + Help and capital</td><td>5 min each: show of hands on lista and the 6 rules; point to the Negosyo Center in Kabankalan as the first stop.</td><td>Both prompts at home</td></tr>
-        <tr><td>10:10–10:20</td><td>Break</td><td>–</td><td>–</td></tr>
-        <tr><td>10:20–10:40</td><td>Part 6: Task 5</td><td>Five continuity moves, then Task 5 (K1).</td><td>–</td></tr>
-        <tr><td>10:40–10:55</td><td>Ready messages + Protect yourself</td><td>Everyone saves 2 of the 4 messages now. One minute on SSS and PhilHealth: who already pays?</td><td>Messages 3–4 and the SSS/PhilHealth plan at home</td></tr>
-        <tr><td>10:55–11:15</td><td>Part 7: Scam check + Safe online</td><td>Read 3 scam cards aloud; tables guess before tapping. Then walk through: don't reply → screenshot → block and report → barangay VAW desk, WCPD, PNP ACG, CICC 1326.</td><td>Spot the mistake at home</td></tr>
-        <tr><td>11:15–11:20</td><td>The selling year</td><td>Look at the 3 marked months only (Undas, Christmas, Sinulog).</td><td>3-month prompt at home</td></tr>
-        <tr><td>11:20–11:45</td><td>Part 8: Task 6 + My 4 weeks</td><td>Task 6 (K2), then one action per week; the 3 answers.</td><td>–</td></tr>
-        <tr><td>11:45–12:00</td><td>Save PDF, send, survey</td><td>Save my 30-day plan as PDF; Send my answers (consent first). Show the after-workshop survey button and say when to answer it (the PRE form said "on the last day", 29 Oct). Read the take-home list.</td><td>–</td></tr>
-      </tbody>
-    </table></div>
-    <p class="tip"><b>Finding a card fast</b><span>Sell smarter opens with "Go to a part" and, on 28 Oct, a "Today starts here" button. Anywhere on the page, the <b>☰ Contents</b> button at the bottom right lists every part and card; <b>↑</b> goes back to the top of the tab. Each tab remembers where you were.</span></p>
-    <p class="tip"><b>Take home tonight</b><span>Voice tries 2 and 3 · Lista table and reminders · business profile for the Negosyo Center (Help and capital) · Ready messages 3 and 4 · SSS and PhilHealth plan (Protect yourself) · Spot the mistake · the 3-month selling plan · new: Sell beyond Kabankalan (Part 4), Buy together (Part 5), Keep your phone working (Part 6). All prompts have a Hiligaynon button.</span></p>
   </div>
 
   <div style="display:grid;gap:12px">
-    <h3>Running it in the room</h3>
+    <h3>9 · After the session</h3>
+    <ul>
+      <li><b>Day 7:</b> message the group (a Messenger group chat or SMS): "Did you post with AI this week? Send one photo of your post."</li>
+      <li><b>Day 30:</b> ask them to open their 30-day plan PDF: what did they do each week? Celebrate one result per person.</li>
+      <li><b>Connect to services:</b> Negosyo Center counselling, BMBE registration, SB Corp loans, DOST SETUP, DSWD Sustainable Livelihood Program. The business-profile prompt in "Help and capital" makes a one-page profile for the first visit.</li>
+      <li><b>Grow peer mentors:</b> Level 4 and 5 participants become Dojo buddies in the next batch. The strongest buddies can train as co-facilitators (Chapter 11).</li>
+      <li><b>Keep sharing the link:</b> the page keeps working after the workshop. Women who could not attend can watch the videos and do every activity on their phone.</li>
+    </ul>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <h3>10 · Measure what changed</h3>
+    <p>Simple counts an LGU or DTI office can report without collecting personal data:</p>
+    <ul>
+      <li><b>Reach:</b> number of participants, by type of business and by barangay.</li>
+      <li><b>Starting point:</b> how many at each quiz level (show of hands).</li>
+      <li><b>In the room:</b> how many finished each AI task (table buddies count).</li>
+      <li><b>After 7 days:</b> how many posted or replied to a customer with AI.</li>
+      <li><b>After 30 days:</b> how many did their weekly actions; how many visited the Negosyo Center, registered a business or opened an e-wallet.</li>
+      <li><b>Confidence, before and after:</b> ask the quiz's five "How true is this for you today?" statements (1–5) on paper at the start and the end, without names, and compare the averages.</li>
+    </ul>
+    <p class="note">If you want to publish results as research, get ethics approval and written consent first.</p>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <h3>11 · Train new facilitators: a one-day programme</h3>
+    <p>For a group of 6–20 LGU, DTI or partner staff, or past participants who will co-facilitate. Each person needs a smartphone with data.</p>
+    <div class="tbl"><table>
+      <thead><tr><th>Time</th><th>Session</th></tr></thead>
+      <tbody>
+        <tr><td>08:30–09:00</td><td>Why AI for women micro-entrepreneurs; the one rule, "AI drafts, you decide"</td></tr>
+        <tr><td>09:00–10:30</td><td>Learn as a participant: quiz, Lead your day (24-hour clock), Parts 1–4 with Tasks 1–3 on your own phone</td></tr>
+        <tr><td>10:30–10:45</td><td>Break</td></tr>
+        <tr><td>10:45–12:00</td><td>Parts 5–8 fast run (Tasks 4–6); Chapter 6: safety, privacy and referral</td></tr>
+        <tr><td>13:00–14:00</td><td>Facilitation skills (Chapter 5): seating by level, demonstrating from a phone, gender-responsive facilitation, the Wish Board on paper</td></tr>
+        <tr><td>14:00–15:30</td><td>Teach-back: in pairs, each person runs one part for 10 minutes. The others play participants, including a first-time AI user and someone with a hard question.</td></tr>
+        <tr><td>15:30–16:30</td><td>Make it local (Chapter 7): check the local cards for your area; plan your first session (format, date, venue, partners)</td></tr>
+        <tr><td>16:30–17:00</td><td>Readiness checklist (Chapter 2) and a follow-up plan</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>Teach-back feedback:</b> give a tick for each.</p>
+    <ol class="gcheck">
+      <li>Demonstrated from a phone.</li>
+      <li>Participants changed the yellow words to their own business.</li>
+      <li>Checked the AI answer together before using it.</li>
+      <li>Said the never-type rule.</li>
+      <li>Finished on time.</li>
+    </ol>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <h3>Appendix A · How the quiz sets the level</h3>
+    <ul>
+      <li>13 questions in three parts with # headings (#My business, #My phone and AI, #My goals), the same structure participants later use in prompts.</li>
+      <li>Score (0–100) = the five "How true is this for you today?" statements (Q6–Q10) 50% + how often she uses AI apps (Q5) 30% + phone skills (Q3) 20%.</li>
+      <li>Level cut-offs: Level 1 under 20, Level 2 20–39, Level 3 40–59, Level 4 60–79, Level 5 80 and over.</li>
+      <li>Someone who has never used AI starts at Level 1 or 2, however high she rates herself. Her first task is to ask AI one real question.</li>
+      <li>Q4 (Gmail) does not change the score. Without Gmail, the path marks the Gemini Notebook step "Needs Gmail" and suggests ChatGPT first.</li>
+      <li>Q12 (goal) moves her goal steps to the front of the path. Q11 (worry) adds one coaching tip.</li>
+      <li>Each level shows a one-line "AI forecast": a playful promise of the next result she can reach.</li>
+      <li>All prompts use the same # headings (#role, #context, #task, #style, plus #rules where needed), so beginners see one prompt structure all the way through.</li>
+    </ul>
+    <p class="note">The cut-offs were a first guess for the Kabankalan run. Adjust them if most of your group lands on one level.</p>
+  </div>
+
+  <div style="display:grid;gap:12px">
+    <h3>Appendix B · The first run: Kabankalan City, 27–29 October 2026</h3>
+    <p>The Dojo was first used in the WISE Program (Women in Sustainable Enterprises) of UP ISSI, with about 30 women entrepreneurs in Kabankalan City, Negros Occidental. Almost all had a smartphone only, and only free AI tools were used. Format C was used: Lead your day on Day 1 morning, Parts 1–4 on Day 1 afternoon, and the rest on Day 2 morning.</p>
+    <p>Day 1 afternoon ended at Task 3. Between Day 1 and Day 2, new cards were added: Price it right (from the group's wishes), voice input, and local cards on selling on credit, support and capital, insurance, safe selling online and the selling year.</p>
+    <div style="display:grid;gap:12px" id="day2run">
+      <h4>Day 2 run sheet (28 Oct, 09:00–12:00)</h4>
+      <p>Day 2 started at 09:00, one hour later than planned, so the morning was 3 hours. The plan kept the core tasks in the room and sent the rest home: the page keeps every answer on the participant's phone. The last column shows what moved home when time ran short.</p>
+      <div class="tbl"><table>
+        <thead><tr><th>Time</th><th>Card</th><th>In the room</th><th>If time is short</th></tr></thead>
+        <tbody>
+          <tr><td>09:00–09:10</td><td>Wish Board</td><td>Open with 2–3 wishes and show where each is answered. Say the Hiligaynon replies aloud.</td><td>–</td></tr>
+          <tr><td>09:10–09:15</td><td>Finish Part 4</td><td>Day 1 ended at Task 3. Do the three checks before posting, then the Halfway question: who used AI for a real post or reply last night?</td><td>–</td></tr>
+          <tr><td>09:15–09:25</td><td>Talk to AI (voice)</td><td>Everyone tries 1 (story → post) by voice. Test Hiligaynon voice typing on one phone; if it fails, speak Filipino.</td><td>Tries 2 and 3 at home</td></tr>
+          <tr><td>09:25–09:45</td><td>Part 5: Task 4</td><td>Notebook photo → table (B1). Cover customer names. Level 4–5 helpers photograph notebooks.</td><td>Use the sample rows</td></tr>
+          <tr><td>09:45–10:00</td><td>Price it right</td><td>Everyone enters one product. Read out one "below cost" warning and fix it together.</td><td>–</td></tr>
+          <tr><td>10:00–10:10</td><td>Lista + Help and capital</td><td>5 min each: show of hands on lista and the 6 rules; point to the Negosyo Center in Kabankalan as the first stop.</td><td>Both prompts at home</td></tr>
+          <tr><td>10:10–10:20</td><td>Break</td><td>–</td><td>–</td></tr>
+          <tr><td>10:20–10:40</td><td>Part 6: Task 5</td><td>Five continuity moves, then Task 5 (K1).</td><td>–</td></tr>
+          <tr><td>10:40–10:55</td><td>Ready messages + Protect yourself</td><td>Everyone saves 2 of the 4 messages now. One minute on SSS and PhilHealth: who already pays?</td><td>Messages 3–4 and the SSS/PhilHealth plan at home</td></tr>
+          <tr><td>10:55–11:15</td><td>Part 7: Scam check + Safe online</td><td>Read 3 scam cards aloud; tables guess before tapping. Then walk through: don't reply → screenshot → block and report → barangay VAW desk, WCPD, PNP ACG, CICC 1326.</td><td>Spot the mistake at home</td></tr>
+          <tr><td>11:15–11:20</td><td>The selling year</td><td>Look at the 3 marked months only (Undas, Christmas, Sinulog).</td><td>3-month prompt at home</td></tr>
+          <tr><td>11:20–11:45</td><td>Part 8: Task 6 + My 4 weeks</td><td>Task 6 (K2), then one action per week; the 3 answers.</td><td>–</td></tr>
+          <tr><td>11:45–12:00</td><td>Save PDF, send, survey</td><td>Save my 30-day plan as PDF; Send my answers (consent first). Show the after-workshop survey button. Read the take-home list.</td><td>–</td></tr>
+        </tbody>
+      </table></div>
+      <p class="tip"><b>Take-home list</b><span>Voice tries 2 and 3 · Lista table and reminders · business profile for the Negosyo Center · Ready messages 3 and 4 · SSS and PhilHealth plan · Spot the mistake · the 3-month selling plan · Sell beyond Kabankalan · Buy together · Keep your phone working.</span></p>
+    </div>
+    <h4>Day 1 afternoon</h4>
     <div class="tbl"><table>
       <thead><tr><th>When</th><th>What</th><th>Dojo use</th></tr></thead>
       <tbody>
-        <tr><td>27 Oct, 13:00–13:20</td><td>§1 Opening + live demo</td><td>Show the Dojo QR code. All 30 take the AI Match Quiz on their phones (5 min). Show of hands by level, then seat 6 tables of 5.</td></tr>
-        <tr><td>27 Oct, 13:20–16:35</td><td>§2–§4 Customer, promise, Facebook/Messenger</td><td>Seat tables by mixed levels: one Level 4 or 5 as "Dojo buddy" per table. Levels 1 and 2 do W1–Y2 first, then join Task 1.</td></tr>
-        <tr><td>27 Oct, 16:35–17:00</td><td>Day 1 wrap-up</td><td>Homework: finish the next unchecked step on her path tonight.</td></tr>
-        <tr><td>28 Oct, 09:00–12:00</td><td>Finish §4, Wish Board, voice, §5–§8</td><td>See the <a href="#day2run">Day 2 run sheet</a> above: Level 4–5 participants stay "Dojo buddies"; B3 notebook for Levels 4 and 5 (others watch one demo); K1 and K2 for all.</td></tr>
+        <tr><td>13:00–13:20</td><td>Part 1 Opening + live demo</td><td>Show the Dojo QR code. All take the AI Match Quiz on their phones (5 min). Show of hands by level, then seat 6 tables of 5.</td></tr>
+        <tr><td>13:20–16:35</td><td>Parts 2–4: customer, promise, Facebook and Messenger</td><td>Mixed-level tables, one Level 4 or 5 as "Dojo buddy" per table. Levels 1 and 2 do their first path steps, then join Task 1.</td></tr>
+        <tr><td>16:35–17:00</td><td>Wrap-up</td><td>Homework: finish the next unchecked step on her path tonight.</td></tr>
       </tbody>
     </table></div>
   </div>
 
-  <div style="display:grid;gap:10px">
-    <h3>Smartphone only, free tools only</h3>
+  <div style="display:grid;gap:12px">
+    <h3>Appendix C · Videos and Gemini Notebook</h3>
     <ul>
-      <li><b>Tools:</b> ChatGPT free (works without an account, more with one), Gemini free (needs a Google/Gmail account; handles notebook photos), and Meta AI inside Messenger or Facebook where it appears. No paid plan, Canva Pro or laptop is needed for any step.</li>
-      <li><b>Before 13:00 on 27 Oct:</b> at the lunch break, ask each participant to open chatgpt.com or the Gemini app once and send "Hello". Note who has no Gmail or no data load; pair them with a buddy rather than spending session time on account setup.</li>
-      <li><b>Phone workflow:</b> Dojo page in one tab, AI app in the other. Copy prompt, switch app, long-press, Paste, change the yellow words, send. Demonstrate this once on the projector from a phone (screen mirroring or a phone camera on the projector), not from a laptop.</li>
-      <li><b>Typing is slow on a phone:</b> show the microphone button. Prompts are kept short and pre-filled so participants mostly edit the yellow words.</li>
-      <li><b>Daily limits:</b> free plans cap messages and photo uploads. If one app stops, switch to the other. B1 (notebook photo) is the step most likely to hit a limit, so run it early on Day 2.</li>
-      <li><b>Privacy:</b> free apps may use chats for training. S1 teaches: <mark class="alert">no customer names, numbers, MPIN or OTP in any prompt</mark>.</li>
-      <li><b>Seating for about 30:</b> 6 tables of 5, each with at least one Level 4 or 5 as Dojo buddy. If there are fewer than 6, use Level 3 participants with a GCash-paying phone.</li>
+      <li><b>Lecture videos:</b> Dr Murata's lectures open each part, with English subtitles: "Lead your day" in 5 short videos (about 20 minutes) and "Sell smarter" in 8 (about 27 minutes). Use them for review, for women who could not attend, and to prepare yourself before you facilitate (Chapter 2). Do not play them on 30 phones at once in the room.</li>
+      <li><b>Gemini Notebook</b> (formerly NotebookLM, free at notebook.google.com with a Google account) makes AI answer from sources she chose, such as her price list and product list. That cuts invented prices and dates. It is an optional step for Level 4 and up. Test it on a phone first; if it does not work, paste the price list into a normal Gemini chat. <mark class="alert">Business facts only, no customer names, numbers or GCash details.</mark></li>
     </ul>
   </div>
 
-  <div style="display:grid;gap:10px">
-    <h3>On-demand lecture videos</h3>
-    <ul>
-      <li><b>What:</b> Dr Murata's recorded "Lead your day" lecture (about 20 min) is split into 5 short videos, one at the top of each part of the Lead your day tab, with English subtitles (on by default). Total about 14 MB (the original file is 35 MB), compressed for mobile data.</li>
-      <li><b>For whom:</b> women who could not attend the workshop, and participants who want to review. Share the Dojo link with them; they can watch, then do the same activities on their phone.</li>
-      <li><b>In the room:</b> do not play the videos over venue Wi-Fi for 30 phones at once; the live session covers the same content.</li>
-    </ul>
-    <h3>Gemini Notebook (formerly NotebookLM)</h3>
-    <ul>
-      <li><b>Why:</b> a notebook makes the AI answer from sources the participant chose, which cuts invented prices and dates, the most common mistake in seller messages. It is free at notebook.google.com (the old notebooklm.google.com link redirects there); sign in with a Google account.</li>
-      <li><b>For participants (B3, Level 4 and up; goal "save time"):</b> one notebook per business with price list photo, product list, delivery areas and GCash rules. On Day 3 the BCRP draft goes into the same notebook, so the plan stays on her phone and AI can answer "what do I do the day before a typhoon?" from her own plan.</li>
-      <li><b>For facilitators: a shared "WISE Sensei" notebook</b> with the programme handouts, the BCRP template, the Kabankalan context brief and official PAGASA/PHIVOLCS guidance. Participants ask it questions after the workshop. Audio Overview gives a listen-only summary for those who prefer audio.</li>
-      <li><b>Check on a phone in Kabankalan before relying on it:</b> that notebook.google.com works in a phone browser on a free Philippine account, and whether a shared notebook opens on mobile (in May 2026 sharing was web-only). If either fails, B3 falls back to pasting the price list into a normal Gemini chat.</li>
-      <li><b>Privacy:</b> notebooks live in the participant's Google account. <mark class="alert">Business facts only, no customer names, numbers or GCash details.</mark></li>
-    </ul>
-  </div>
-
-  <div style="display:grid;gap:10px">
-    <h3>Low-connectivity fallback</h3>
-    <ul>
-      <li>If Wi-Fi fails, run the quiz on paper: the 13 questions fit on one A4 sheet, and facilitators count the score by hand with the rule above.</li>
-      <li>Every practice prompt also works as a group exercise: one phone per table with data, shared by the 5 people.</li>
-      <li>The Dojo page is small. Opening it once on Wi-Fi is enough; the result stays on the phone afterwards.</li>
-    </ul>
-  </div>
-
-  <div style="display:grid;gap:10px">
-    <h3>Collecting answers for analysis</h3>
-    <ul>
-      <li><b>How:</b> the page itself stores nothing centrally. "Send my answers" opens a Google Form pre-filled with that participant's quiz answers, level, 24-hour clocks, helper roles, 3 Rs and finished steps. She reads, edits, gives consent and submits. Responses land in a new sheet of the WISE Pre/Post responses spreadsheet.</li>
-      <li><b>Linking:</b> the optional personal code is the same one as the pre/post surveys (e.g. MA0745), so Dojo data can be joined to Section E scores.</li>
-      <li><b>Privacy:</b> no names, phones or emails; inputs ask for roles and tasks only. Research use only after ethics approval; until then, programme evaluation only. Consent is required on the form.</li>
-      <li><b>What we can analyze:</b> level distribution; Q6–Q10 against pre-survey Section E; business type × goal × worry; normal vs disaster-day hours for business, care and community (paired comparison, the care-burden shift in numbers); helper roles and 3 Rs commitments coded into themes; which Dojo steps were finished.</li>
-      <li><b>Setup (once):</b> run <code>questionnaire/WISE_Dojo_Form.gs</code> in Apps Script and send the log to Claude to connect the form.</li>
-    </ul>
-  </div>
-
-  <div style="display:grid;gap:10px">
-    <h3>Before using this with participants</h3>
-    <ul>
-      <li>All Hiligaynon lines are drafts. Please have a local co-facilitator check them.</li>
-      <li>Answers are stored in the participant's own browser. They reach the WISE team only if she taps "Send my answers" and submits the form.</li>
-      <li>This is version 1 (26 Oct 2026). Cut-offs are a starting guess and should be tuned after the first run.</li>
-    </ul>
-  </div>
+  <p class="note">Developed for the WISE Program of UP ISSI by Dr Akira Murata (Juntendo University), October 2026. To use the Dojo with your LGU or office, contact the WISE Program team at UP ISSI.</p>
 </section>
 
 <div class="clearbox">
@@ -1082,6 +1213,9 @@ const EXAMPLE={biz:"food",product:"kakanin and sari-sari goods",phone:"gcash",gm
 
 
 // ---- optional sharing: open a pre-filled Google Form (nothing is sent by this page) ----
+// WISE forms (answers + wishes): open until 30 Nov 2026 PH time, hidden from 1 Dec (Akira, 28 Oct)
+const WISE_FORMS_OPEN=Date.now()<Date.parse("2026-12-01T00:00:00+08:00");
+if(!WISE_FORMS_OPEN)document.querySelectorAll(".wise-send-note").forEach(e=>e.remove());
 const DOJO_FORM={base:"https://docs.google.com/forms/d/e/1FAIpQLSfCBoyrg6YNZ5dEjXXwn41PKWl-Z1u-aFPtLPIZR1rQcpkqLw/viewform",entries:{quiz:"entry.1564037940",skills:"entry.1318866594",clockA:"entry.372520481",clockB:"entry.499590018",helpers:"entry.710181774",handoff:"entry.2067712682",threeRs:"entry.859043103",will:"entry.1937081924",sellChoices:"entry.1001126758",sellText:"entry.1465337346"}};
 function dojoPayload(){
   const st=store.get()||{}, a=st.answers, out={};
@@ -1106,6 +1240,7 @@ function dojoFormUrl(){
   return DOJO_FORM.base+"?"+q.join("&");
 }
 function sendBlock(){
+  if(!WISE_FORMS_OPEN)return "";
   return DOJO_FORM.base
     ?`<div class="share"><b>Share your answers with the WISE team (optional)</b><span>This opens a Google Form already filled in with your Dojo answers. Read them, change anything, then tap Submit. No name is collected.</span><a class="btn btn-primary send-dojo" href="${DOJO_FORM.base}" target="_blank" rel="noopener">Send my answers</a></div>`
     :`<div class="share"><b>Share your answers with the WISE team (optional)</b><span>The answer form is not connected yet.</span></div>`;
@@ -1172,7 +1307,7 @@ const WISHES=[
 ];
 const WCATS=[["sell","📣 Sell more"],["money","💰 Prices, money and records"],["time","⏰ Time and family"],["ready","🌀 Disaster-ready"],["grow","🌱 Grow and dream"]];
 const WTAG={done:"Covered",day2:"Day 2",dojo:"In the Dojo",next:"Next step"};
-const wishSend=()=>WISH_FORM?`<a class="btn btn-primary wish-send" href="${WISH_FORM}" target="_blank" rel="noopener">Send my wish</a>`:`<p class="check">The wish form opens soon. Until then, tell your wish to the facilitator.</p>`;
+const wishSend=()=>!WISE_FORMS_OPEN?"":WISH_FORM?`<a class="btn btn-primary wish-send" href="${WISH_FORM}" target="_blank" rel="noopener">Send my wish</a>`:`<p class="check">The wish form opens soon. Until then, tell your wish to the facilitator.</p>`;
 const howSend=`<div class="howto"><h5>How to send your wish</h5><span class="hil">Paano magpadala sang imo handum</span>
   ${list([["Tap the orange button \"Send my wish\".","I-tap ang orange nga button nga \"Send my wish\"."],
     ["Write one wish: a task in your business that you would love AI to do. Example: \"Write my Facebook posts for payday.\" <u>English, Hiligaynon or Filipino are all fine.</u>","Isulat ang isa ka handum: isa ka buluhaton sa imo negosyo nga gusto mo ipabulig sa AI. Pwede ka magsulat sa English, Hiligaynon ukon Filipino."],
@@ -1192,8 +1327,8 @@ const howRead=`<div class="howto"><h5>How to read the Wish Board</h5><span class
 const wishRound=`<div class="reflect" id="wishround"><h4>Wish Round: one wish for AI <span class="tag">5 min</span></h4>
   <span class="hil">Isa ka handum para sa AI</span>
   <p>At your table, take one minute each. Say the name you like to be called, what you sell, and <b>one wish</b>: a task from your business week that you would love to hand to an AI helper. Say it and write it in the language you like best: English, Hiligaynon or Filipino.</p>
-  <p>Then send your wish. On Day 2 it appears on the <a href="#course" data-goto="course" data-part="wishboard">Wish Board</a>, <b>without your name</b>, next to the part of the course that answers it.</p>
-  ${howSend}
+  ${WISE_FORMS_OPEN?`<p>Then send your wish. On Day 2 it appears on the <a href="#course" data-goto="course" data-part="wishboard">Wish Board</a>, <b>without your name</b>, next to the part of the course that answers it.</p>
+  ${howSend}`:`<p>Then write it on a card for your facilitator, <b>without your name</b>. At the next session, the facilitator shows the part of the course that answers it. The <a href="#course" data-goto="course" data-part="wishboard">Wish Board</a> shows wishes from the first group as examples.</p>`}
   ${wishSend()}
   <p class="check"><mark class="alert">No names, phone numbers or GCash numbers in your wish.</mark></p></div>`;
 const wishBoard=`<article class="lpart" id="wishboard"><span class="lnum">Day 2</span><h3>The Wish Board</h3><span class="hil">Ang mga handum sang grupo</span><div id="wb-body"></div></article>`;
@@ -1210,7 +1345,7 @@ function drawWishes(){
    ${howRead}
    <div class="chips">${cats.map(c=>`<button type="button" class="wb-btn" data-wcat="${c[0]}" aria-pressed="${wCat===c[0]}">${c[1]} (${n(c[0])})</button>`).join("")}</div>
    <div class="wb-list">${wCat?WISHES.map((x,i)=>[x,i]).filter(([x])=>wCat==="all"||x.cat===wCat).map(([x,i])=>`<div class="wish-row"><span class="wb-tag ${x.tag}">${WTAG[x.tag]||x.tag}${x.where?" · "+x.where:""}</span><span>${x.w}${x.en?`<span class="wb-en">English: ${x.en}</span>`:""}</span>${x.re?`<p class="wb-re"><b>💬 Dojo reply</b>${x.re}${x.hil?`<span class="hil">${x.hil}</span>`:""}</p>`:""}${x.tp?`<details class="spot wb-try"><summary>Try this prompt</summary><div class="prompt" id="wp-${i}">${cfill(x.tp)}</div>${/Hiligaynon/.test(x.tp)?"":`<div id="wph-${i}" hidden>${cfill(hilTp(x.tp))}</div>`}<div class="btnrow"><button type="button" class="copy" data-copy="wp-${i}">Copy prompt</button>${/Hiligaynon/.test(x.tp)?"":`<button type="button" class="copy" data-copy="wph-${i}">Copy: answer in Hiligaynon</button>`}<a class="open" href="https://chatgpt.com/" target="_blank" rel="noopener">Open ChatGPT</a><a class="open" href="https://gemini.google.com/" target="_blank" rel="noopener">Open Gemini</a></div></details>`:""}</div>`).join(""):""}</div>
-   <p class="check">From the Wish Round, no names. Wishes written in Hiligaynon or Filipino are shown as written, with an English line below. Missing yours? ${WISH_FORM?`<a href="${WISH_FORM}" target="_blank" rel="noopener">Send it here</a>.`:"Tell your facilitator."}</p>`;
+   <p class="check">From the Wish Round, no names. Wishes written in Hiligaynon or Filipino are shown as written, with an English line below. Missing yours? ${WISE_FORMS_OPEN&&WISH_FORM?`<a href="${WISH_FORM}" target="_blank" rel="noopener">Send it here</a>.`:"Tell your facilitator."}</p>`;
 }
 document.addEventListener("click",e=>{const b=e.target.closest(".wb-btn");if(!b)return;wCat=(wCat===b.dataset.wcat)?null:b.dataset.wcat;drawWishes();});
 // Price it right (Part 5): pricing was the top wish and the lowest pre-survey confidence
